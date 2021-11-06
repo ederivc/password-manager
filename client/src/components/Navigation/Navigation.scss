@@ -1,0 +1,27 @@
+@use "../../common/common.scss";
+
+.navbar {
+  background-color: common.$base-color;
+  color: #fff !important;
+
+  img {
+    height: 50px;
+  }
+}
+
+.nav-link {
+  color: common.$light-blue !important;
+  font-weight: 700;
+
+  &:hover {
+    background-color: common.$transparent-blue;
+    border-radius: 5px;
+  }
+}
+
+.navbar-toggler-icon {
+  background-color: common.$light-blue !important;
+  height: 35px !important;
+  width: 35px !important;
+  border-radius: 2px;
+}

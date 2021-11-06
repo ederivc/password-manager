@@ -1,0 +1,37 @@
+$base-color: #0a1929;
+$base-blue: #001e3c;
+$medium-blue: #007fff;
+$transparent-blue: #132f4c;
+$light-blue: #80bfff;
+$white-blue: #a5d8ff;
+$base-gray: #aab4be;
+
+body {
+  max-width: 2000px;
+  background-color: $base-blue !important;
+  padding: 0;
+  margin: auto !important;
+}
+
+textarea:focus,
+input[type="text"]:focus,
+input[type="password"]:focus,
+input[type="datetime"]:focus,
+input[type="datetime-local"]:focus,
+input[type="date"]:focus,
+input[type="month"]:focus,
+input[type="time"]:focus,
+input[type="week"]:focus,
+input[type="number"]:focus,
+input[type="email"]:focus,
+input[type="url"]:focus,
+input[type="search"]:focus,
+input[type="tel"]:focus,
+input[type="color"]:focus,
+.uneditable-input:focus {
+  border-color: $light-blue;
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset, 0 0 8px $light-blue;
+  outline: 0 none;
+}
+
+@import "~bootstrap/scss/bootstrap";
