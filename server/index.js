@@ -1,10 +1,17 @@
 const express = require("express");
 const dbConnection = require("./config/db");
-
+const cookieParser = require("cookie-parser");
 const app = express();
+
 dbConnection();
 
+app.use(express.json());
+app.use(cookieParser());
+
 PORT = process.env.PORT || 5000;
+
+app.use("/api/users", require("./routes/Users"));
+app.use("/api/auth", require("./routes/Auth"));
 
 app.use(express.static("public"));
 
