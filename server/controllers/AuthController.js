@@ -22,7 +22,31 @@ exports.login = async (req, res) => {
   res.cookie("access-token", accessToken, {
     maxAge: 2592000000, // 30 days
     // expiresIn: 3600, // 1 hour
+    httpOnly: true,
+    // secure: true,
   });
 
   res.json({ success: "logged in" });
+};
+
+exports.register = async (req, res) => {
+  const { name, email, password } = req.body;
+
+  const userExists = await User.exists({ email });
+
+  if (userExists) {
+    return res.status(400).json({ error: "User already exists" });
+  }
+
+  const hash = await bcrypt.hash(password, 10);
+
+  newUser = new User({
+    name,
+    email,
+    password: hash,
+  });
+
+  await newUser.save();
+
+  res.json({ success: "User created successfully" });
 };

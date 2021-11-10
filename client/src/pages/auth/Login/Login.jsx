@@ -1,11 +1,19 @@
-import React from "react";
+import React, { useEffect } from "react";
+import { url } from "../../../api/api";
+import { Link, useNavigate } from "react-router-dom";
+import { useAuth } from "../../../context/useAuth";
 import { Container, Form, Button } from "react-bootstrap";
-import { Link } from "react-router-dom";
-import { url } from "../../api/api";
 
 import "./Login.scss";
 
 const Login = () => {
+  const { isAuth } = useAuth();
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (isAuth) navigate("/home");
+  });
+
   return (
     <Container fluid className="login">
       <div className="login__content">

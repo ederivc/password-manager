@@ -1,0 +1,57 @@
+@use "../../../common/common.scss";
+
+.wrapper {
+  width: 100vw;
+  max-width: 2000px;
+  height: calc(100vh - 76px);
+  position: relative;
+}
+
+.register {
+  height: 32rem;
+  width: 70rem;
+  display: flex;
+  border-radius: 10px;
+  margin: auto;
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  background-color: common.$base-color;
+
+  &__img {
+    width: 50%;
+
+    img {
+      width: 100%;
+      height: 100%;
+      border-top-left-radius: 10px;
+      border-bottom-left-radius: 10px;
+    }
+  }
+
+  &__content {
+    width: 50%;
+    color: common.$light-blue;
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+
+    h2 {
+      text-align: center;
+      font-weight: 700;
+      padding-top: 1.5rem;
+      padding-bottom: 0.5rem;
+      color: common.$light-blue;
+    }
+
+    .form-group {
+      padding-top: 0.5rem;
+      padding-bottom: 0.5rem;
+    }
+
+    button {
+      margin-top: 1rem;
+    }
+  }
+}

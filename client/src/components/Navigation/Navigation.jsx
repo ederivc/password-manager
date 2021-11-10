@@ -18,7 +18,7 @@ const Navigation = () => {
             <Nav.Link href="#pricing">Servicios</Nav.Link>
             <Nav.Link href="#pricing">Contactanos</Nav.Link>
             <Nav.Link href="#features">Acerca de</Nav.Link>
-            <Nav.Link href="#features">Registrate</Nav.Link>
+            <Nav.Link href="/register">Registrate</Nav.Link>
           </Nav>
           <Nav>
             <Button className="nav-btn" variant="primary" as={Link} to="/login">
