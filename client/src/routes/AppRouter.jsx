@@ -1,13 +1,17 @@
 import React from "react";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { Layout } from "../layouts/Layout";
-import { Website } from "../pages/Website/Website";
+import { PrivateRoute } from "./PrivateRoute";
 import { Login } from "../pages/auth/Login/Login";
-import { Register } from "../pages/auth/Register/Register";
-import { Home } from "../pages/PasswordManager/Home/Home";
+import { Website } from "../pages/Website/Website";
 import { NotFound } from "../pages/NotFound/NotFound";
+import { Home } from "../pages/PasswordManager/Home/Home";
+import { Register } from "../pages/auth/Register/Register";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { useAuth } from "../hooks/useAuth";
 
 const AppRouter = () => {
+  const { isLoading } = useAuth();
+
   return (
     <Router>
       <Layout>
@@ -16,7 +20,16 @@ const AppRouter = () => {
           <Route exact path="/login" element={<Login />}></Route>
           <Route exact path="/register" element={<Register />}></Route>
 
-          <Route exact path="/home" element={<Home />}></Route>
+          <Route
+            path="/home"
+            element={
+              !isLoading && (
+                <PrivateRoute>
+                  <Home />
+                </PrivateRoute>
+              )
+            }
+          ></Route>
           <Route exact path="*" element={<NotFound />}></Route>
         </Routes>
       </Layout>

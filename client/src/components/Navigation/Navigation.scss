@@ -19,9 +19,15 @@
   }
 }
 
+.navbar-toggler {
+  border-color: common.$base-gray !important;
+  color: #fff !important;
+}
+
 .navbar-toggler-icon {
-  background-color: common.$light-blue !important;
+  background-color: common.$medium-blue !important;
   height: 35px !important;
-  width: 35px !important;
+  width: 40px !important;
   border-radius: 2px;
+  border-color: #fff !important;
 }

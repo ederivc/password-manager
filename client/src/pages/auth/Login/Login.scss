@@ -30,6 +30,10 @@
   &__form {
     width: 90%;
     margin-top: 1rem;
+
+    .form-group {
+      margin-bottom: 1.2rem;
+    }
   }
 
   &__image {
@@ -44,15 +48,24 @@
   }
 }
 
-.form__register {
+.form__forgot {
   margin-top: 1rem;
   text-align: center;
 
   a {
     text-decoration: none;
-    color: common.$medium-blue !important;
+    color: common.$light-blue !important;
     border-bottom: 1px solid common.$light-blue;
-    padding-top: 0.7rem;
+  }
+}
+
+.form__register {
+  margin-top: 1rem;
+  text-align: center;
+
+  a {
+    color: common.$medium-blue !important;
+    text-decoration: none;
   }
 }
 

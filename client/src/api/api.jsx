@@ -4,6 +4,7 @@ const RESOURCE_URLS = {
   FETCH_AUTH_USER: "/api/auth/fetchAuthUser",
   REGISTER_USER: "/api/auth/register",
   LOGIN_USER: "/api/auth/login",
+  LOGOUT_USER: "/api/auth/logout",
 };
 class APIUsers {
   static async fetchAuthUser() {
@@ -22,10 +23,6 @@ class APIUsers {
         "Content-Type": "application/json",
       },
       body: JSON.stringify(data),
-      // body: JSON.stringify({
-      //   email: "email@mail.com",
-      //   password: "pass",
-      // }),
     });
 
     return res;
@@ -39,6 +36,17 @@ class APIUsers {
         "Content-Type": "application/json",
       },
       body: JSON.stringify(data),
+    });
+
+    return res;
+  }
+
+  static async logoutUser() {
+    const res = await fetch(`${url}${RESOURCE_URLS.LOGOUT_USER}`, {
+      credentials: "include",
+      headers: {
+        "Content-Type": "application/json",
+      },
     });
 
     return res;

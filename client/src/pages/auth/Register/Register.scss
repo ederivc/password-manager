@@ -1,27 +1,54 @@
 @use "../../../common/common.scss";
 
 .wrapper {
+  padding: 0;
   width: 100vw;
   max-width: 2000px;
   height: calc(100vh - 76px);
   position: relative;
+  display: flex;
+  align-items: center;
 }
 
 .register {
-  height: 32rem;
-  width: 70rem;
-  display: flex;
   border-radius: 10px;
+  display: flex;
+  width: 67rem;
+  height: 36rem;
   margin: auto;
-  position: absolute;
-  top: 0;
-  left: 0;
-  bottom: 0;
-  right: 0;
-  background-color: common.$base-color;
+  padding-left: 2rem;
+  padding-right: 2rem;
+
+  &__form {
+    background-color: common.$base-color;
+    color: common.$light-blue;
+    width: 65%;
+    padding-top: 1rem;
+    padding-left: 3rem;
+    padding-right: 3rem;
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+
+    h2 {
+      margin-top: 1.2rem;
+      text-align: center;
+      font-weight: 700;
+    }
+
+    .form-group {
+      padding-top: 0.4rem;
+      padding-bottom: 0.4rem;
+
+      .form-label {
+        font-size: 0.95rem;
+      }
+    }
+  }
 
   &__img {
-    width: 50%;
+    display: flex;
+    align-items: center;
+    width: 35%;
 
     img {
       width: 100%;
@@ -31,27 +58,39 @@
     }
   }
 
-  &__content {
-    width: 50%;
-    color: common.$light-blue;
-    padding-left: 1.5rem;
-    padding-right: 1.5rem;
+  &__btn {
+    margin-top: 0.8rem;
+  }
+}
 
-    h2 {
-      text-align: center;
-      font-weight: 700;
-      padding-top: 1.5rem;
-      padding-bottom: 0.5rem;
-      color: common.$light-blue;
+@media (max-width: 992px) {
+  .register {
+    max-width: 50rem;
+    height: 40rem;
+
+    &__form {
+      width: 50%;
     }
 
-    .form-group {
-      padding-top: 0.5rem;
-      padding-bottom: 0.5rem;
+    &__img {
+      width: 50%;
     }
+  }
+}
 
-    button {
-      margin-top: 1rem;
-    }
+@media (max-width: 800px) {
+  .register__img {
+    display: none;
+  }
+
+  .register__form {
+    width: 100%;
+    height: 37rem;
+  }
+}
+
+@media (max-width: 420px) {
+  .register__form {
+    height: 38rem;
   }
 }

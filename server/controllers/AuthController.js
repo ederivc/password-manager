@@ -15,7 +15,7 @@ exports.login = async (req, res) => {
   const validPassword = await bcrypt.compare(password, user.password);
 
   if (!validPassword)
-    return res.status(400).json({ error: "Incorrect password" });
+    return res.status(400).json({ error: "Incorrect email or password" });
 
   const accessToken = createToken(user);
 
@@ -26,7 +26,7 @@ exports.login = async (req, res) => {
     // secure: true,
   });
 
-  res.json({ success: "logged in" });
+  res.json({ success: "logged in", name: user.name });
 };
 
 exports.register = async (req, res) => {
@@ -35,7 +35,9 @@ exports.register = async (req, res) => {
   const userExists = await User.exists({ email });
 
   if (userExists) {
-    return res.status(400).json({ error: "User already exists" });
+    return res.status(400).json({
+      error: `User ${email} already exists. Please try with another one`,
+    });
   }
 
   const hash = await bcrypt.hash(password, 10);
@@ -49,4 +51,13 @@ exports.register = async (req, res) => {
   await newUser.save();
 
   res.json({ success: "User created successfully" });
+};
+
+exports.logout = async (req, res) => {
+  res.cookie("access-token", "", {
+    expires: new Date(Date.now() + 5 * 1000),
+    httpOnly: true,
+  });
+
+  res.json({ success: "logged out" });
 };

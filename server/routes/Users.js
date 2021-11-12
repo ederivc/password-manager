@@ -12,4 +12,9 @@ router.get("/fetchUsers", async (req, res) => {
   return res.json(users);
 });
 
+router.get("/deleteUsers", async (req, res) => {
+  await User.deleteMany({});
+  return res.json({ Success: "Deleted" });
+});
+
 module.exports = router;

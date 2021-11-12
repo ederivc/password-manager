@@ -1,39 +1,58 @@
 import React, { useEffect, useReducer, createContext } from "react";
 import { APIUsers } from "../api/api";
-import { AuthReducer } from "../reducers/AuthReducer";
+import { TYPES } from "../actions/authActions";
+import { authReducer } from "../reducers/authReducer";
 
-export const AuthContext = createContext();
+const AuthContext = createContext();
 
 const AuthProvider = ({ children }) => {
   const initialState = {
     name: null,
     email: null,
     isAuth: null,
+    isLoading: true,
   };
 
-  const [state, dispatch] = useReducer(AuthReducer, initialState);
+  const [state, dispatch] = useReducer(authReducer, initialState);
 
   const fetchAuthUser = async () => {
     const res = await APIUsers.fetchAuthUser();
     const data = await res.json();
 
     if (res.status === 200) {
-      dispatch({ type: "userIsAuth", payload: data });
-    } else if (res.status == 400) {
-      dispatch({ type: "userIsNotAuth" });
+      dispatch({ type: TYPES.USER_IS_AUTH, payload: data });
+    } else if (res.status === 400) {
+      dispatch({ type: TYPES.USER_IS_NOT_AUTH });
     }
   };
 
-  const registerUser = async (data) => {
-    if (data.password !== data.confirmPassword) {
-      console.log("Passwords do not match");
-      return;
+  const loginUser = async (data) => {
+    const res = await APIUsers.loginUser(data);
+    const json = await res.json();
+
+    if (res.status === 200) {
+      dispatch({
+        type: TYPES.USER_IS_AUTH,
+        payload: { name: json.name, email: data.email },
+      });
     }
+
+    return { res, json };
+  };
+
+  const registerUser = async (data) => {
     const res = await APIUsers.registerUser(data);
     const json = await res.json();
 
-    console.log(res);
-    console.log(json);
+    return { res, json };
+  };
+
+  const logoutUser = async () => {
+    const res = await APIUsers.logoutUser();
+    dispatch({
+      type: TYPES.LOGOUT_USER,
+    });
+    return res;
   };
 
   useEffect(() => {
@@ -46,7 +65,10 @@ const AuthProvider = ({ children }) => {
         name: state.name,
         email: state.email,
         isAuth: state.isAuth,
+        isLoading: state.isLoading,
         registerUser,
+        loginUser,
+        logoutUser,
       }}
     >
       {children}
@@ -54,4 +76,4 @@ const AuthProvider = ({ children }) => {
   );
 };
 
-export { AuthProvider };
+export { AuthProvider, AuthContext };
