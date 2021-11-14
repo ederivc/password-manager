@@ -16,10 +16,10 @@ const AppRouter = () => {
     <Router>
       <Layout>
         <Routes>
-          <Route exact path="/" element={<Website />}></Route>
-          <Route exact path="/login" element={<Login />}></Route>
-          <Route exact path="/register" element={<Register />}></Route>
-
+          <Route exact path="/" element={<Website />} />
+          <Route exact path="/login" element={<Login />} />
+          <Route exact path="/register" element={<Register />} />
+          {/* PRIVATE ROUTES */}
           <Route
             path="/home"
             element={
@@ -29,8 +29,8 @@ const AppRouter = () => {
                 </PrivateRoute>
               )
             }
-          ></Route>
-          <Route exact path="*" element={<NotFound />}></Route>
+          />
+          <Route exact path="*" element={<NotFound />} />
         </Routes>
       </Layout>
     </Router>
