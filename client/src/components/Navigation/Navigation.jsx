@@ -1,22 +1,36 @@
 import React, { useState, useEffect } from "react";
 import { url } from "../../api/api";
-import { Link, useNavigate, useLocation } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../../hooks/useAuth";
 
 import "./Navigation.scss";
 
 const Navigation = () => {
   const navigate = useNavigate();
-  const location = useLocation();
   const [menuOpen, setMenuOpen] = useState(false);
+  const [size, setSize] = useState({ width: "", height: "" });
   const { name, isAuth, logoutUser } = useAuth();
+
+  useEffect(() => {
+    const handleResize = () => {
+      setSize({ width: window.innerWidth, height: window.innerHeight });
+    };
+    window.addEventListener("resize", handleResize);
+
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
+  useEffect(() => {
+    if (size.width > 768 && menuOpen) {
+      setMenuOpen(false);
+    }
+  }, [size.width, menuOpen]);
 
   const menuToggleHandler = () => {
     setMenuOpen(!menuOpen);
   };
 
   const handleLoginRedirect = () => {
-    if (location.pathname !== "/login") menuToggleHandler();
     navigate("/login");
   };
 
