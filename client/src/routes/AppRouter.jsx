@@ -1,4 +1,5 @@
 import React from "react";
+import { useAuth } from "../hooks/useAuth";
 import { Layout } from "../layouts/Layout";
 import { PrivateRoute } from "./PrivateRoute";
 import { Login } from "../pages/auth/Login/Login";
@@ -7,7 +8,7 @@ import { NotFound } from "../pages/NotFound/NotFound";
 import { Home } from "../pages/PasswordManager/Home/Home";
 import { Register } from "../pages/auth/Register/Register";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import { useAuth } from "../hooks/useAuth";
+import { GeneratePassword } from "../pages/PasswordManager/GeneratePassword/GeneratePassword";
 
 const AppRouter = () => {
   const { isLoading } = useAuth();
@@ -26,6 +27,16 @@ const AppRouter = () => {
               !isLoading && (
                 <PrivateRoute>
                   <Home />
+                </PrivateRoute>
+              )
+            }
+          />
+          <Route
+            path="/generatePassword"
+            element={
+              !isLoading && (
+                <PrivateRoute>
+                  <GeneratePassword />
                 </PrivateRoute>
               )
             }

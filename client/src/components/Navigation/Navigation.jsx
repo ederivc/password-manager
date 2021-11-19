@@ -64,7 +64,7 @@ const Navigation = () => {
                   <Link to="/">Groups</Link>
                 </li>
                 <li>
-                  <Link to="/">Generate</Link>
+                  <Link to="/generatePassword">Generate</Link>
                 </li>
                 <li>
                   <button className="header__content__nav__btn">{name}</button>
