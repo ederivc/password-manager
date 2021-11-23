@@ -12,8 +12,9 @@ app.use(cookieParser());
 
 PORT = process.env.PORT || 5000;
 
-app.use("/api/users", require("./routes/Users"));
 app.use("/api/auth", require("./routes/Auth"));
+app.use("/api/password", require("./routes/Password"));
+app.use("/api/users", require("./routes/Users"));
 
 app.use(express.static("public"));
 

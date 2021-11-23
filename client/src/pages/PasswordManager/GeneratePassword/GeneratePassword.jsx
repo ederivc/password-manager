@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useAlert } from "../../../hooks/useAlert";
 import { CustomAlert } from "../../../components/Alert";
 import { Container, Form, Row, Col } from "react-bootstrap";
@@ -6,6 +6,7 @@ import { CustomBtnRow } from "../../../components/Utilities";
 import RandExp from "randexp";
 
 import "./GeneratePassword.scss";
+import { APIPasswords } from "../../../api/api";
 
 const GeneratePassword = () => {
   const [showAlert, displayAlert] = useAlert();
@@ -59,17 +60,31 @@ const GeneratePassword = () => {
     return shuffledRegex;
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     if (validations.characters < 5 || validations.characters > 20) {
       displayAlert("Number of characters must be between 5 and 20", "danger");
       return;
     }
 
+    const res = await APIPasswords.createPassword(password);
+
+    if (res.ok) {
+      displayAlert("Your password has been saved successfully", "success");
+      setValidations({
+        characters: 10,
+        symbols: true,
+        numbers: true,
+        capitals: true,
+      });
+    }
+  };
+
+  useEffect(() => {
     const newPassword = generatePassword();
 
     setPassword(newPassword.slice(0, validations.characters));
-  };
+  }, [validations]);
 
   return (
     <Container className="password">
@@ -138,13 +153,13 @@ const GeneratePassword = () => {
           <Row>
             <Col className="password__col">
               <button type="submit" onClick={handleSubmit}>
-                <span className="mx-2">Generate</span>
+                <span className="mx-2">Save</span>
                 <i className="fas fa-lock mr-2"></i>
               </button>
             </Col>
             <Col className="password__col password__result">
               <div>
-                <input value={password} />
+                <button type="button">{password}</button>
               </div>
             </Col>
           </Row>
