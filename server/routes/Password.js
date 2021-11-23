@@ -1,5 +1,6 @@
 const express = require("express");
 const router = express.Router();
+const Password = require("../models/Password");
 const passwordController = require("../controllers/PasswordController");
 const { validateToken } = require("../middlewares/AuthMiddleware");
 
@@ -10,5 +11,10 @@ router.post(
   validateToken,
   passwordController.createPassword
 );
+
+router.get("/deletePasswords", async (req, res) => {
+  await Password.deleteMany({});
+  return res.json({ Success: "Deleted" });
+});
 
 module.exports = router;

@@ -1,4 +1,5 @@
-import { Row, Col } from "react-bootstrap";
+import { Row, Col, Card } from "react-bootstrap";
+import { Link } from "react-router-dom";
 
 const CustomBtnRow = ({
   label,
@@ -27,4 +28,31 @@ const CustomBtnRow = ({
   );
 };
 
-export { CustomBtnRow };
+const CustomCardText = ({ strong, span, className = null, children }) => {
+  return (
+    <>
+      <Card.Text className={className}>
+        {children ? (
+          children
+        ) : (
+          <>
+            <strong>{strong}: </strong>
+            <span>{span}: </span>
+          </>
+        )}
+      </Card.Text>
+    </>
+  );
+};
+
+const CustomLink = ({ to, text, onClick }) => {
+  return (
+    <li>
+      <Link to={to} onClick={onClick}>
+        {text}
+      </Link>
+    </li>
+  );
+};
+
+export { CustomBtnRow, CustomCardText, CustomLink };

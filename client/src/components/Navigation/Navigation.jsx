@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { url } from "../../api/api";
-import { Link, useNavigate } from "react-router-dom";
+import { CustomLink } from "../Utilities";
 import { useAuth } from "../../hooks/useAuth";
+import { Link, useNavigate } from "react-router-dom";
 
 import "./Navigation.scss";
 
@@ -27,11 +28,11 @@ const Navigation = () => {
   }, [size.width, menuOpen]);
 
   const menuToggleHandler = () => {
-    setMenuOpen(!menuOpen);
-  };
-
-  const handleLoginRedirect = () => {
-    navigate("/login");
+    if (size.width > 768) {
+      setMenuOpen(false);
+    } else {
+      setMenuOpen(!menuOpen);
+    }
   };
 
   const handleLogout = async () => {
@@ -54,45 +55,48 @@ const Navigation = () => {
           <ul>
             {isAuth ? (
               <>
-                <li>
-                  <Link to="/">Passwords</Link>
-                </li>
-                <li>
-                  <Link to="/">Manage</Link>
-                </li>
-                <li>
-                  <Link to="/">Groups</Link>
-                </li>
-                <li>
-                  <Link to="/generatePassword">Generate</Link>
-                </li>
+                <CustomLink
+                  to="/passwords"
+                  text="Passwords"
+                  onClick={menuToggleHandler}
+                />
+                <CustomLink to="/" text="Manage" onClick={menuToggleHandler} />
+                <CustomLink
+                  to="/"
+                  text="Categories"
+                  onClick={menuToggleHandler}
+                />
+                <CustomLink
+                  to="/generatePassword"
+                  text="Generate"
+                  onClick={menuToggleHandler}
+                />
                 <li>
                   <button className="header__content__nav__btn">{name}</button>
                 </li>
               </>
             ) : (
               <>
-                <li>
-                  <Link to="/">About</Link>
-                </li>
-                <li>
-                  <Link to="/">Discover</Link>
-                </li>
-                <li>
-                  <Link to="/">Services</Link>
-                </li>
+                <CustomLink to="/" text="About" onClick={menuToggleHandler} />
+                <CustomLink
+                  to="/"
+                  text="Discover"
+                  onClick={menuToggleHandler}
+                />
+                <CustomLink
+                  to="/"
+                  text="Services"
+                  onClick={menuToggleHandler}
+                />
               </>
             )}
           </ul>
           {!isAuth ? (
-            <button
-              onClick={handleLoginRedirect}
-              className="header__content__nav__btn"
-            >
-              Sign In
-            </button>
+            <Link to="/login" onClick={menuToggleHandler}>
+              <button className="header__content__nav__btn">Sign In</button>
+            </Link>
           ) : (
-            <Link to="/">
+            <Link to="/" onClick={menuToggleHandler}>
               <button
                 onClick={handleLogout}
                 className="header__content__nav__logout"

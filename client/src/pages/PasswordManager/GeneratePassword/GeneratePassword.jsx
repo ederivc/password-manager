@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from "react";
+import RandExp from "randexp";
+import { APIPasswords } from "../../../api/api";
 import { useAlert } from "../../../hooks/useAlert";
 import { CustomAlert } from "../../../components/Alert";
 import { Container, Form, Row, Col } from "react-bootstrap";
 import { CustomBtnRow } from "../../../components/Utilities";
-import RandExp from "randexp";
 
 import "./GeneratePassword.scss";
-import { APIPasswords } from "../../../api/api";
 
 const GeneratePassword = () => {
   const [showAlert, displayAlert] = useAlert();
