@@ -113,6 +113,10 @@ $spacing-lg: 32px;
               background: linear-gradient(rgba(#fff, 0.1), rgba(#fff, 0.2));
             }
           }
+
+          .a__btn:hover {
+            background: none;
+          }
         }
       }
 

@@ -9,7 +9,10 @@ import "./Navigation.scss";
 const Navigation = () => {
   const navigate = useNavigate();
   const [menuOpen, setMenuOpen] = useState(false);
-  const [size, setSize] = useState({ width: "", height: "" });
+  const [size, setSize] = useState({
+    width: window.innerWidth,
+    height: window.innerHeight,
+  });
   const { name, isAuth, logoutUser } = useAuth();
 
   useEffect(() => {
@@ -28,11 +31,7 @@ const Navigation = () => {
   }, [size.width, menuOpen]);
 
   const menuToggleHandler = () => {
-    if (size.width > 768) {
-      setMenuOpen(false);
-    } else {
-      setMenuOpen(!menuOpen);
-    }
+    setMenuOpen((p) => !p);
   };
 
   const handleLogout = async () => {
@@ -51,7 +50,11 @@ const Navigation = () => {
             <img src={`${url}/img/password.png`} alt="passwordmanager" />
           </Link>
         </h2>
-        <nav className={`header__content__nav ${menuOpen ? "isMenu" : ""}`}>
+        <nav
+          className={`header__content__nav ${
+            menuOpen && size.width < 768 ? "isMenu" : ""
+          }`}
+        >
           <ul>
             {isAuth ? (
               <>
