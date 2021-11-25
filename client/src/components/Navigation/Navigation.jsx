@@ -1,21 +1,38 @@
 import React, { useState, useEffect } from "react";
 import { url } from "../../api/api";
-import { Link, useNavigate } from "react-router-dom";
+import { CustomLink } from "../Utilities";
 import { useAuth } from "../../hooks/useAuth";
-import {
-  Container,
-  Nav,
-  Navbar,
-  Button,
-  Dropdown,
-  DropdownButton,
-} from "react-bootstrap";
+import { Link, useNavigate } from "react-router-dom";
 
 import "./Navigation.scss";
 
 const Navigation = () => {
-  const { name, isAuth, isLoading, logoutUser } = useAuth();
   const navigate = useNavigate();
+  const [menuOpen, setMenuOpen] = useState(false);
+  const [size, setSize] = useState({
+    width: window.innerWidth,
+    height: window.innerHeight,
+  });
+  const { name, isAuth, logoutUser } = useAuth();
+
+  useEffect(() => {
+    const handleResize = () => {
+      setSize({ width: window.innerWidth, height: window.innerHeight });
+    };
+    window.addEventListener("resize", handleResize);
+
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
+  useEffect(() => {
+    if (size.width > 768 && menuOpen) {
+      setMenuOpen(false);
+    }
+  }, [size.width, menuOpen]);
+
+  const menuToggleHandler = () => {
+    setMenuOpen((p) => !p);
+  };
 
   const handleLogout = async () => {
     const res = await logoutUser();
@@ -26,50 +43,81 @@ const Navigation = () => {
   };
 
   return (
-    <Navbar collapseOnSelect expand="lg" className="navbar">
-      <Container>
-        <Navbar.Brand as={Link} to="/">
-          <img src={`${url}/img/password.png`} alt="passwordmanager" />
-        </Navbar.Brand>
-        <Navbar.Toggle aria-controls="responsive-navbar-nav" />
-        <Navbar.Collapse id="responsive-navbar-nav">
-          <Nav className="mx-auto">
-            <Nav.Link href="#pricing">Services</Nav.Link>
-            <Nav.Link href="#pricing">Contact us</Nav.Link>
-            <Nav.Link href="#features">About</Nav.Link>
-          </Nav>
-          <Nav>
+    <header className="header">
+      <div className="header__content">
+        <h2 className="header__content__logo">
+          <Link to="/">
+            <img src={`${url}/img/password.png`} alt="passwordmanager" />
+          </Link>
+        </h2>
+        <nav
+          className={`header__content__nav ${
+            menuOpen && size.width < 768 ? "isMenu" : ""
+          }`}
+        >
+          <ul>
             {isAuth ? (
-              <DropdownButton
-                id="nav-dropdown"
-                title={
-                  <span>
-                    <i className="fa fa-user fa-fw"></i>
-                    {` ${name}`}
-                  </span>
-                }
-              >
-                <Dropdown.Item href="#/action-1">
-                  <i className="fas fa-user-circle"></i> Account
-                </Dropdown.Item>
-                <Dropdown.Item onClick={handleLogout}>
-                  <i className="fas fa-sign-out-alt"></i> Sign out
-                </Dropdown.Item>
-              </DropdownButton>
+              <>
+                <CustomLink
+                  to="/passwords"
+                  text="Passwords"
+                  onClick={menuToggleHandler}
+                />
+                <CustomLink to="/" text="Manage" onClick={menuToggleHandler} />
+                <CustomLink
+                  to="/"
+                  text="Categories"
+                  onClick={menuToggleHandler}
+                />
+                <CustomLink
+                  to="/generatePassword"
+                  text="Generate"
+                  onClick={menuToggleHandler}
+                />
+                <Link to="/account" onClick={menuToggleHandler}>
+                  <button className="header__content__nav__btn">{name}</button>
+                </Link>
+              </>
             ) : (
-              <Button
-                className="nav-btn"
-                variant="primary"
-                as={Link}
-                to="/login"
-              >
-                Sign In
-              </Button>
+              <>
+                <CustomLink to="/" text="About" onClick={menuToggleHandler} />
+                <CustomLink
+                  to="/"
+                  text="Discover"
+                  onClick={menuToggleHandler}
+                />
+                <CustomLink
+                  to="/"
+                  text="Services"
+                  onClick={menuToggleHandler}
+                />
+              </>
             )}
-          </Nav>
-        </Navbar.Collapse>
-      </Container>
-    </Navbar>
+          </ul>
+          {!isAuth ? (
+            <Link to="/login" onClick={menuToggleHandler}>
+              <button className="header__content__nav__btn">Sign In</button>
+            </Link>
+          ) : (
+            <Link to="/" onClick={menuToggleHandler}>
+              <button
+                onClick={handleLogout}
+                className="header__content__nav__logout"
+              >
+                Sign Out
+              </button>
+            </Link>
+          )}
+        </nav>
+        <div className="header__content__toggle">
+          {menuOpen ? (
+            <i className="fas fa-times" onClick={menuToggleHandler}></i>
+          ) : (
+            <i className="fas fa-bars" onClick={menuToggleHandler}></i>
+          )}
+        </div>
+      </div>
+    </header>
   );
 };
 

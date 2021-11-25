@@ -7,7 +7,7 @@ import { useAlert } from "../../../hooks/useAlert";
 import { Form, Row, Button, Container, Col } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 import { CustomAlert } from "../../../components/Alert";
-import { CustomInputText } from "../../../components/CustomInputText";
+import { CustomInput } from "../../../components/CustomInput";
 
 import "./Register.scss";
 
@@ -16,7 +16,7 @@ const Register = () => {
   const { isAuth, registerUser } = useAuth();
   const [showAlert, displayAlert] = useAlert();
   const validationSchema = Yup.object().shape({
-    name: Yup.string().min(4).required().default(""),
+    name: Yup.string().min(5).max(10).required().default(""),
     email: Yup.string().email().min(8).required().default(""),
     password: Yup.string().min(1).max(15).required().default(""),
     confirmPassword: Yup.string().min(1).max(15).required().default(""),
@@ -64,14 +64,14 @@ const Register = () => {
               <Form noValidate onSubmit={handleSubmit}>
                 <CustomAlert {...showAlert} />
                 <Row>
-                  <CustomInputText label="Name" name="name" type="text" />
-                  <CustomInputText label="Email" name="email" type="email" />
-                  <CustomInputText
+                  <CustomInput label="Name" name="name" type="text" />
+                  <CustomInput label="Email" name="email" type="email" />
+                  <CustomInput
                     label="Password"
                     name="password"
                     type="password"
                   />
-                  <CustomInputText
+                  <CustomInput
                     label="Confirm Password"
                     name="confirmPassword"
                     type="password"

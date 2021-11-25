@@ -10,7 +10,7 @@ const CustomAlert = ({ showAlert, text, variant, refresh }) => {
     if (showAlert) {
       setShow(true);
     }
-  }, [refresh]);
+  }, [refresh, showAlert]);
 
   return (
     <>

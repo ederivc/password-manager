@@ -1,4 +1,5 @@
 import React from "react";
+import { useAuth } from "../hooks/useAuth";
 import { Layout } from "../layouts/Layout";
 import { PrivateRoute } from "./PrivateRoute";
 import { Login } from "../pages/auth/Login/Login";
@@ -6,8 +7,10 @@ import { Website } from "../pages/Website/Website";
 import { NotFound } from "../pages/NotFound/NotFound";
 import { Home } from "../pages/PasswordManager/Home/Home";
 import { Register } from "../pages/auth/Register/Register";
+import { Account } from "../pages/PasswordManager/Account/Account";
+import { Passwords } from "../pages/PasswordManager/Passwords/Passwords";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import { useAuth } from "../hooks/useAuth";
+import { GeneratePassword } from "../pages/PasswordManager/GeneratePassword/GeneratePassword";
 
 const AppRouter = () => {
   const { isLoading } = useAuth();
@@ -16,10 +19,10 @@ const AppRouter = () => {
     <Router>
       <Layout>
         <Routes>
-          <Route exact path="/" element={<Website />}></Route>
-          <Route exact path="/login" element={<Login />}></Route>
-          <Route exact path="/register" element={<Register />}></Route>
-
+          <Route exact path="/" element={<Website />} />
+          <Route exact path="/login" element={<Login />} />
+          <Route exact path="/register" element={<Register />} />
+          {/* PRIVATE ROUTES */}
           <Route
             path="/home"
             element={
@@ -29,8 +32,38 @@ const AppRouter = () => {
                 </PrivateRoute>
               )
             }
-          ></Route>
-          <Route exact path="*" element={<NotFound />}></Route>
+          />
+          <Route
+            path="/generatePassword"
+            element={
+              !isLoading && (
+                <PrivateRoute>
+                  <GeneratePassword />
+                </PrivateRoute>
+              )
+            }
+          />
+          <Route
+            path="/passwords"
+            element={
+              !isLoading && (
+                <PrivateRoute>
+                  <Passwords />
+                </PrivateRoute>
+              )
+            }
+          />
+          <Route
+            path="/account"
+            element={
+              !isLoading && (
+                <PrivateRoute>
+                  <Account />
+                </PrivateRoute>
+              )
+            }
+          />
+          <Route exact path="*" element={<NotFound />} />
         </Routes>
       </Layout>
     </Router>

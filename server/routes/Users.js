@@ -2,10 +2,11 @@ const express = require("express");
 const router = express.Router();
 const User = require("../models/User");
 const { validateToken } = require("../middlewares/AuthMiddleware");
+const userController = require("../controllers/UserController");
 
-router.get("/profile", validateToken, (req, res) => {
-  res.json({ success: "Profile" });
-});
+router.get("/account", validateToken, userController.fetchUser);
+
+router.put("/updateUser", validateToken, userController.updateUser);
 
 router.get("/fetchUsers", async (req, res) => {
   const users = await User.find();

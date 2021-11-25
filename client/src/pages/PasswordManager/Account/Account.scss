@@ -1,0 +1,36 @@
+@use "../../../common/common.scss";
+
+.account {
+  color: #fff;
+  margin: 3rem auto;
+  border-radius: 5px;
+  background: common.$transparent-blue;
+  border: 1px solid common.$line-blue;
+  font-size: 1.05rem;
+
+  h1 {
+    text-align: center;
+  }
+
+  strong {
+    font-weight: 800;
+    color: common.$white-blue;
+  }
+
+  img {
+    max-height: 100px;
+  }
+
+  .p__message {
+    color: common.$light-blue;
+    font-weight: 700;
+  }
+}
+
+@media (max-width: 576px) {
+  .account {
+    // color: red;
+    // box-sizing: border-box;
+    // margin: 3rem 2rem;
+  }
+}

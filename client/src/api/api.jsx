@@ -5,6 +5,10 @@ const RESOURCE_URLS = {
   REGISTER_USER: "/api/auth/register",
   LOGIN_USER: "/api/auth/login",
   LOGOUT_USER: "/api/auth/logout",
+  USER_ACCOUNT: "/api/users/account",
+  UPDATE_USER: "/api/users/updateUser",
+  CREATE_PASSWORD: "/api/password/createPassword",
+  FETCH_PASSWORD: "/api/password/getPasswords",
 };
 class APIUsers {
   static async fetchAuthUser() {
@@ -51,6 +55,53 @@ class APIUsers {
 
     return res;
   }
+
+  static async fetchUserInfo() {
+    const res = await fetch(`${url}${RESOURCE_URLS.USER_ACCOUNT}`, {
+      credentials: "include",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+
+    return res;
+  }
+
+  static async updateUser(data) {
+    const res = await fetch(`${url}${RESOURCE_URLS.UPDATE_USER}`, {
+      method: "PUT",
+      credentials: "include",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(data),
+    });
+
+    return res;
+  }
 }
 
-export { APIUsers, url };
+class APIPasswords {
+  static async createPassword(data) {
+    const res = await fetch(`${url}${RESOURCE_URLS.CREATE_PASSWORD}`, {
+      method: "POST",
+      credentials: "include",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ password: data }),
+    });
+
+    return res;
+  }
+
+  static async fetchPasswords() {
+    const res = await fetch(`${url}${RESOURCE_URLS.FETCH_PASSWORD}`, {
+      credentials: "include",
+    });
+
+    return res;
+  }
+}
+
+export { APIUsers, APIPasswords, url };
