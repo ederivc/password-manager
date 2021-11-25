@@ -74,9 +74,9 @@ const Navigation = () => {
                   text="Generate"
                   onClick={menuToggleHandler}
                 />
-                <li>
+                <Link to="/account" onClick={menuToggleHandler}>
                   <button className="header__content__nav__btn">{name}</button>
-                </li>
+                </Link>
               </>
             ) : (
               <>

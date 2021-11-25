@@ -7,6 +7,7 @@ import { Website } from "../pages/Website/Website";
 import { NotFound } from "../pages/NotFound/NotFound";
 import { Home } from "../pages/PasswordManager/Home/Home";
 import { Register } from "../pages/auth/Register/Register";
+import { Account } from "../pages/PasswordManager/Account/Account";
 import { Passwords } from "../pages/PasswordManager/Passwords/Passwords";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { GeneratePassword } from "../pages/PasswordManager/GeneratePassword/GeneratePassword";
@@ -48,6 +49,16 @@ const AppRouter = () => {
               !isLoading && (
                 <PrivateRoute>
                   <Passwords />
+                </PrivateRoute>
+              )
+            }
+          />
+          <Route
+            path="/account"
+            element={
+              !isLoading && (
+                <PrivateRoute>
+                  <Account />
                 </PrivateRoute>
               )
             }

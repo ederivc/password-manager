@@ -5,6 +5,8 @@ const RESOURCE_URLS = {
   REGISTER_USER: "/api/auth/register",
   LOGIN_USER: "/api/auth/login",
   LOGOUT_USER: "/api/auth/logout",
+  USER_ACCOUNT: "/api/users/account",
+  UPDATE_USER: "/api/users/updateUser",
   CREATE_PASSWORD: "/api/password/createPassword",
   FETCH_PASSWORD: "/api/password/getPasswords",
 };
@@ -49,6 +51,30 @@ class APIUsers {
       headers: {
         "Content-Type": "application/json",
       },
+    });
+
+    return res;
+  }
+
+  static async fetchUserInfo() {
+    const res = await fetch(`${url}${RESOURCE_URLS.USER_ACCOUNT}`, {
+      credentials: "include",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+
+    return res;
+  }
+
+  static async updateUser(data) {
+    const res = await fetch(`${url}${RESOURCE_URLS.UPDATE_USER}`, {
+      method: "PUT",
+      credentials: "include",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(data),
     });
 
     return res;

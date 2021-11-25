@@ -1,7 +1,7 @@
 import { useField } from "formik";
 import { Form } from "react-bootstrap";
 
-const CustomInputText = ({ label, name, ...props }) => {
+const CustomInput = ({ label, name, ...props }) => {
   const [field, meta, helpers] = useField(name);
 
   return (
@@ -19,4 +19,4 @@ const CustomInputText = ({ label, name, ...props }) => {
   );
 };
 
-export { CustomInputText };
+export { CustomInput };

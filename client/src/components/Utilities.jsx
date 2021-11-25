@@ -55,4 +55,13 @@ const CustomLink = ({ to, text, onClick }) => {
   );
 };
 
-export { CustomBtnRow, CustomCardText, CustomLink };
+const CustomAccountCol = ({ strong, text }) => {
+  return (
+    <Col md={4} className="my-2 my-md-0">
+      <strong>{strong}: </strong>{" "}
+      {text ? text : `You have not registered any ${strong.toLowerCase()}`}
+    </Col>
+  );
+};
+
+export { CustomBtnRow, CustomCardText, CustomLink, CustomAccountCol };

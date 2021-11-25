@@ -7,7 +7,7 @@ import { useAlert } from "../../../hooks/useAlert";
 import { Link, useNavigate } from "react-router-dom";
 import { CustomAlert } from "../../../components/Alert";
 import { Container, Form, Button, Row } from "react-bootstrap";
-import { CustomInputText } from "../../../components/CustomInputText";
+import { CustomInput } from "../../../components/CustomInput";
 
 import "./Login.scss";
 
@@ -50,8 +50,8 @@ const Login = () => {
               <Form noValidate onSubmit={handleSubmit} className="login__form">
                 <CustomAlert {...showAlert} />
                 <Row>
-                  <CustomInputText label="Email" name="email" type="email" />
-                  <CustomInputText
+                  <CustomInput label="Email" name="email" type="email" />
+                  <CustomInput
                     label="Password"
                     name="password"
                     type="password"
