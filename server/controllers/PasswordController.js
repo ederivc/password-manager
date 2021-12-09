@@ -87,3 +87,12 @@ exports.updatePassword = async (req, res) => {
 
   res.json({ success: "Password updated successfully" });
 };
+
+exports.deletePassword = async (req, res) => {
+  const { id } = req.body;
+  const userId = req.user.id;
+
+  await Password.findOneAndDelete({ _id: id, owner: userId });
+
+  return res.json({ success: "The password has been deleted" });
+};

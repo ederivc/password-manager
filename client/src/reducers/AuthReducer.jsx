@@ -24,6 +24,9 @@ const authReducer = (state, action) => {
         isAuth: false,
         isLoading: true,
       };
+
+    default:
+      break;
   }
 };
 

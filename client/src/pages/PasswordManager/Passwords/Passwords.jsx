@@ -19,13 +19,15 @@ import { CustomCardText, CustomFormModal } from "../../../components/Utilities";
 import "./Passwords.scss";
 
 const Passwords = () => {
-  const [showModal, setShowModal] = useState(false);
   const [showAlert, displayAlert] = useAlert();
   const [reload, setReload] = useAlert(false);
   const [passwords, setPasswords] = useState([]);
   const [categories, setCategories] = useState();
   const [passwordInfo, setPasswordInfo] = useState();
   const validationSchema = updatePasswordValidation();
+  const [passwordToDelete, setPasswordToDelete] = useState();
+  const [showModalUpdate, setShowModalUpdate] = useState(false);
+  const [showModalDelete, setShowModalDelete] = useState(false);
 
   const fetchPasswords = async () => {
     const res = await APIPasswords.fetchPasswords();
@@ -66,12 +68,26 @@ const Passwords = () => {
     if (res.ok) {
       displayAlert(json.success, "success");
       setReload(!reload);
+      setShowModalUpdate(false);
     }
 
     if (res.status === 400) displayAlert(json.error, "danger");
   };
 
-  const showModalFunction = (passwordProp) => {
+  const handleDelete = async () => {
+    const res = await APIPasswords.deletePassword(passwordToDelete);
+    const json = await res.json();
+
+    if (res.ok) {
+      displayAlert(json.success, "success");
+      setReload(!reload);
+      setShowModalDelete(false);
+    }
+
+    if (res.status === 400) displayAlert(json.error, "danger");
+  };
+
+  const showModalUpdateFunction = (passwordProp) => {
     const { name, password, _id, category, categoryName } = passwordProp;
     let displayCategory = "";
 
@@ -91,7 +107,12 @@ const Passwords = () => {
       password,
       category: displayCategory,
     });
-    setShowModal(true);
+    setShowModalUpdate(true);
+  };
+
+  const showModalDeleteFunction = (passwordProp) => {
+    setPasswordToDelete(passwordProp._id);
+    setShowModalDelete(true);
   };
 
   return (
@@ -130,12 +151,16 @@ const Passwords = () => {
                     <Button
                       variant="warning"
                       size="lg"
-                      onClick={() => showModalFunction(password)}
+                      onClick={() => showModalUpdateFunction(password)}
                     >
-                      Editar
+                      Edit
                     </Button>
-                    <Button variant="danger" size="lg">
-                      Eliminar
+                    <Button
+                      variant="danger"
+                      size="lg"
+                      onClick={() => showModalDeleteFunction(password)}
+                    >
+                      Delete
                     </Button>
                   </div>
                 </Card.Body>
@@ -144,10 +169,10 @@ const Passwords = () => {
           );
         })}
       </Row>
-      {showModal && (
+      {showModalUpdate && (
         <CustomFormModal
-          showProps={showModal}
-          setShowProps={setShowModal}
+          showProps={showModalUpdate}
+          setShowProps={setShowModalUpdate}
           title="Edit Password"
           confirmBtn="Edit"
           handleSubmit={handleSubmit}
@@ -158,7 +183,6 @@ const Passwords = () => {
             onSubmit={handleSubmit}
             validateOnChange={false}
             validateOnBlur={false}
-            enableReinitialize
           >
             {({ handleSubmit }) => (
               <Form
@@ -198,7 +222,7 @@ const Passwords = () => {
                 <Modal.Footer>
                   <Button
                     variant="secondary"
-                    onClick={() => setShowModal(false)}
+                    onClick={() => setShowModalUpdate(false)}
                   >
                     Close
                   </Button>
@@ -209,6 +233,28 @@ const Passwords = () => {
               </Form>
             )}
           </Formik>
+        </CustomFormModal>
+      )}
+      {showModalDelete && (
+        <CustomFormModal
+          showProps={showModalDelete}
+          setShowProps={setShowModalDelete}
+          title="Delete Password"
+          confirmBtn="Delete"
+          handleSubmit={handleDelete}
+        >
+          <p>Are you sure you want to delete this password?</p>
+          <Modal.Footer>
+            <Button
+              variant="secondary"
+              onClick={() => setShowModalDelete(false)}
+            >
+              No
+            </Button>
+            <Button variant="primary" onClick={handleDelete}>
+              Yes
+            </Button>
+          </Modal.Footer>
         </CustomFormModal>
       )}
     </Container>

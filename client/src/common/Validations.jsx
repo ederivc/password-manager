@@ -63,7 +63,7 @@ const updatePasswordValidation = (
   category = ""
 ) => {
   const schema = Yup.object().shape({
-    passwordName: Yup.string().min(5).max(15).default(passwordName),
+    passwordName: Yup.string().min(5).max(30).default(passwordName),
     password: Yup.string().min(8).max(20).default(password),
     category: Yup.string().default(category),
   });

@@ -10,6 +10,7 @@ const RESOURCE_URLS = {
   CREATE_PASSWORD: "/api/password/createPassword",
   FETCH_PASSWORD: "/api/password/getPasswords",
   UPDATE_PASSWORD: "/api/password/updatePassword",
+  DELETE_PASSWORD: "/api/password/deletePassword",
   CREATE_CATEGORY: "/api/categories/createCategory",
   FETCH_CATEGORY: "/api/categories/getCategories",
   // UPDATE_CATEGORY: "/api/categories/updateCategory",
@@ -115,6 +116,19 @@ class APIPasswords {
         "Content-Type": "application/json",
       },
       body: JSON.stringify(data),
+    });
+
+    return res;
+  }
+
+  static async deletePassword(data) {
+    const res = await fetch(`${url}${RESOURCE_URLS.DELETE_PASSWORD}`, {
+      method: "DELETE",
+      credentials: "include",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ id: data }),
     });
 
     return res;

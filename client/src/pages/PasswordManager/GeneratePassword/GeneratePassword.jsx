@@ -49,6 +49,9 @@ const GeneratePassword = () => {
           case "capitals":
             regexExpression += "[A-Z]{10}";
             break;
+
+          default:
+            break;
         }
       }
     }
