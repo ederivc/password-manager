@@ -9,6 +9,10 @@ const RESOURCE_URLS = {
   UPDATE_USER: "/api/users/updateUser",
   CREATE_PASSWORD: "/api/password/createPassword",
   FETCH_PASSWORD: "/api/password/getPasswords",
+  UPDATE_PASSWORD: "/api/password/updatePassword",
+  CREATE_CATEGORY: "/api/categories/createCategory",
+  FETCH_CATEGORY: "/api/categories/getCategories",
+  // UPDATE_CATEGORY: "/api/categories/updateCategory",
 };
 class APIUsers {
   static async fetchAuthUser() {
@@ -102,6 +106,42 @@ class APIPasswords {
 
     return res;
   }
+
+  static async updatePasswords(data) {
+    const res = await fetch(`${url}${RESOURCE_URLS.UPDATE_PASSWORD}`, {
+      method: "PUT",
+      credentials: "include",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(data),
+    });
+
+    return res;
+  }
 }
 
-export { APIUsers, APIPasswords, url };
+class APICategory {
+  static async createCategory(data) {
+    const res = await fetch(`${url}${RESOURCE_URLS.CREATE_CATEGORY}`, {
+      method: "POST",
+      credentials: "include",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ password: data }),
+    });
+
+    return res;
+  }
+
+  static async fetchCategories() {
+    const res = await fetch(`${url}${RESOURCE_URLS.FETCH_CATEGORY}`, {
+      credentials: "include",
+    });
+
+    return res;
+  }
+}
+
+export { APIUsers, APIPasswords, APICategory, url };

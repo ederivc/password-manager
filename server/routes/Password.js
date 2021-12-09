@@ -17,4 +17,6 @@ router.get("/deletePasswords", async (req, res) => {
   return res.json({ Success: "Deleted" });
 });
 
+router.put("/updatePassword", validateToken, passwordController.updatePassword);
+
 module.exports = router;

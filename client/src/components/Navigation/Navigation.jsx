@@ -63,7 +63,6 @@ const Navigation = () => {
                   text="Passwords"
                   onClick={menuToggleHandler}
                 />
-                <CustomLink to="/" text="Manage" onClick={menuToggleHandler} />
                 <CustomLink
                   to="/"
                   text="Categories"

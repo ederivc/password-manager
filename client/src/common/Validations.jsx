@@ -57,4 +57,18 @@ const accountValidations = (user, changePassword) => {
   return schema;
 };
 
-export { accountValidations };
+const updatePasswordValidation = (
+  passwordName = "",
+  password = "",
+  category = ""
+) => {
+  const schema = Yup.object().shape({
+    passwordName: Yup.string().min(5).max(15).default(passwordName),
+    password: Yup.string().min(8).max(20).default(password),
+    category: Yup.string().default(category),
+  });
+
+  return schema;
+};
+
+export { accountValidations, updatePasswordValidation };
