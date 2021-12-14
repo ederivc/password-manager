@@ -64,7 +64,7 @@ const Navigation = () => {
                   onClick={menuToggleHandler}
                 />
                 <CustomLink
-                  to="/"
+                  to="/categories"
                   text="Categories"
                   onClick={menuToggleHandler}
                 />

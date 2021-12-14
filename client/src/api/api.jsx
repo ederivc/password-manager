@@ -143,7 +143,7 @@ class APICategory {
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({ password: data }),
+      body: JSON.stringify(data),
     });
 
     return res;

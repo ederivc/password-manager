@@ -8,15 +8,13 @@ exports.createPassword = async (req, res) => {
   const userId = req.user.id;
   const { password } = req.body;
 
-  const numberOfPasswords = await Password.countDocuments({ owner: userId });
-
   const encryptedPassword = CryptoJS.AES.encrypt(
     password,
     process.env.SECRET_PASSWORDS_KEY
   ).toString();
 
   const newPassword = new Password({
-    name: `Password #${numberOfPasswords + 1}`,
+    name: `Password #PW${Math.floor(Math.random() * 100000) + 1}`,
     password: encryptedPassword,
     owner: userId,
   });

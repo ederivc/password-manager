@@ -10,6 +10,7 @@ import { Register } from "../pages/auth/Register/Register";
 import { Account } from "../pages/PasswordManager/Account/Account";
 import { Passwords } from "../pages/PasswordManager/Passwords/Passwords";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { Categories } from "../pages/PasswordManager/Categories/Categories";
 import { GeneratePassword } from "../pages/PasswordManager/GeneratePassword/GeneratePassword";
 
 const AppRouter = () => {
@@ -59,6 +60,16 @@ const AppRouter = () => {
               !isLoading && (
                 <PrivateRoute>
                   <Account />
+                </PrivateRoute>
+              )
+            }
+          />
+          <Route
+            path="/categories"
+            element={
+              !isLoading && (
+                <PrivateRoute>
+                  <Categories />
                 </PrivateRoute>
               )
             }
