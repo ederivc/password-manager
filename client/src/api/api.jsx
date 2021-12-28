@@ -13,6 +13,7 @@ const RESOURCE_URLS = {
   DELETE_PASSWORD: "/api/password/deletePassword",
   CREATE_CATEGORY: "/api/categories/createCategory",
   FETCH_CATEGORY: "/api/categories/getCategories",
+  FETCH_CATEGORY_PASSWORDS: "/api/password/getCategoryPasswords",
   // UPDATE_CATEGORY: "/api/categories/updateCategory",
 };
 class APIUsers {
@@ -103,6 +104,19 @@ class APIPasswords {
   static async fetchPasswords() {
     const res = await fetch(`${url}${RESOURCE_URLS.FETCH_PASSWORD}`, {
       credentials: "include",
+    });
+
+    return res;
+  }
+
+  static async fetchCategoryPasswords(data) {
+    const res = await fetch(`${url}${RESOURCE_URLS.FETCH_CATEGORY_PASSWORDS}`, {
+      method: "POST",
+      credentials: "include",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ categoryId: data }),
     });
 
     return res;

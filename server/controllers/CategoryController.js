@@ -28,7 +28,6 @@ exports.createCategory = async (req, res) => {
 
   const categories = await Category.find({ owner: userId });
   const passwords = await Password.find({ owner: userId });
-  console.log(passwords);
 
   categories.forEach((current) => {
     if (current.name.toLowerCase().trim() === category.toLowerCase().trim()) {

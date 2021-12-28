@@ -7,6 +7,12 @@ const { validateToken } = require("../middlewares/AuthMiddleware");
 router.get("/getPasswords", validateToken, passwordController.getPasswords);
 
 router.post(
+  "/getCategoryPasswords",
+  validateToken,
+  passwordController.getCategoryPasswords
+);
+
+router.post(
   "/createPassword",
   validateToken,
   passwordController.createPassword

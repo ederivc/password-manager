@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from "react";
 import * as Yup from "yup";
 import { Formik } from "formik";
-import { Container, Form, Row, Button, Table } from "react-bootstrap";
+import { Link } from "react-router-dom";
 import { APICategory } from "../../../api/api";
 import { useAlert } from "../../../hooks/useAlert";
 import { CustomAlert } from "../../../components/Alert";
 import { CustomInput } from "../../../components/CustomInput";
+import { Container, Form, Row, Button, Table } from "react-bootstrap";
 
 import "./Categories.scss";
 
@@ -82,7 +83,9 @@ const Categories = () => {
                   <td>{category.passwords}</td>
                   <td>{category.createdAt.slice(0, 10)}</td>
                   <td>
-                    <i className="fas fa-external-link-square-alt"></i>
+                    <Link to={`/categories/${category.name}/${category._id}`}>
+                      <i className="fas fa-external-link-square-alt"></i>
+                    </Link>
                   </td>
                 </tr>
               );

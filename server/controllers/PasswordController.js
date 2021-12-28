@@ -29,7 +29,24 @@ exports.getPasswords = async (req, res) => {
 
   const passwords = await Password.find({ owner: userId });
 
-  decodedPasswords = passwords.forEach((password) => {
+  passwords.forEach((password) => {
+    const passwordBytes = CryptoJS.AES.decrypt(
+      password.password,
+      process.env.SECRET_PASSWORDS_KEY
+    );
+    const decodedPassword = passwordBytes.toString(CryptoJS.enc.Utf8);
+    password.password = decodedPassword;
+  });
+
+  return res.json(passwords);
+};
+
+exports.getCategoryPasswords = async (req, res) => {
+  const { categoryId } = req.body;
+
+  const passwords = await Password.find({ category: categoryId });
+
+  passwords.forEach((password) => {
     const passwordBytes = CryptoJS.AES.decrypt(
       password.password,
       process.env.SECRET_PASSWORDS_KEY
