@@ -62,7 +62,6 @@ const Account = () => {
   };
 
   const handleSubmit = (data) => {
-    console.log(data);
     if (changePassword) {
       if (data.newPassword !== data.confirmPassword) {
         displayAlert("Your passwords don't match", "danger");
@@ -71,11 +70,11 @@ const Account = () => {
     } else {
       delete data.changePasswordYup;
       if (typeof data.birthDate !== "string") delete data.birthDate;
-      for (let [key, _] of Object.entries(data)) {
+      Object.keys(data).forEach((key) => {
         if (key.toLowerCase().includes("password")) {
           data[key] = "";
         }
-      }
+      });
     }
 
     updateUser(data);

@@ -7,14 +7,28 @@ const { validateToken } = require("../middlewares/AuthMiddleware");
 router.get("/getPasswords", validateToken, passwordController.getPasswords);
 
 router.post(
+  "/getCategoryPasswords",
+  validateToken,
+  passwordController.getCategoryPasswords
+);
+
+router.post(
   "/createPassword",
   validateToken,
   passwordController.createPassword
 );
 
+router.delete(
+  "/deletePassword",
+  validateToken,
+  passwordController.deletePassword
+);
+
 router.get("/deletePasswords", async (req, res) => {
   await Password.deleteMany({});
-  return res.json({ Success: "Deleted" });
+  return res.json({ success: "Deleted" });
 });
+
+router.put("/updatePassword", validateToken, passwordController.updatePassword);
 
 module.exports = router;

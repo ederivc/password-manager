@@ -49,6 +49,9 @@ const GeneratePassword = () => {
           case "capitals":
             regexExpression += "[A-Z]{10}";
             break;
+
+          default:
+            break;
         }
       }
     }
@@ -150,6 +153,17 @@ const GeneratePassword = () => {
               })
             }
           />
+          {/* <Row>
+            <Col className="password__col">Category</Col>
+            <Col className="password__col">
+              <Form.Select aria-label="">
+                <option>Open this select menu</option>
+                <option value="1">One</option>
+                <option value="2">Two</option>
+                <option value="3">Three</option>
+              </Form.Select>
+            </Col>
+          </Row> */}
           <Row>
             <Col className="password__col">
               <button type="submit" onClick={handleSubmit}>

@@ -8,8 +8,10 @@ import { NotFound } from "../pages/NotFound/NotFound";
 import { Home } from "../pages/PasswordManager/Home/Home";
 import { Register } from "../pages/auth/Register/Register";
 import { Account } from "../pages/PasswordManager/Account/Account";
+import { Category } from "../pages/PasswordManager/Category/Category";
 import { Passwords } from "../pages/PasswordManager/Passwords/Passwords";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { Categories } from "../pages/PasswordManager/Categories/Categories";
 import { GeneratePassword } from "../pages/PasswordManager/GeneratePassword/GeneratePassword";
 
 const AppRouter = () => {
@@ -59,6 +61,26 @@ const AppRouter = () => {
               !isLoading && (
                 <PrivateRoute>
                   <Account />
+                </PrivateRoute>
+              )
+            }
+          />
+          <Route
+            path="/categories"
+            element={
+              !isLoading && (
+                <PrivateRoute>
+                  <Categories />
+                </PrivateRoute>
+              )
+            }
+          />
+          <Route
+            path="/categories/:categoryName/:categoryId"
+            element={
+              !isLoading && (
+                <PrivateRoute>
+                  <Category />
                 </PrivateRoute>
               )
             }

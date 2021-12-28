@@ -1,19 +1,19 @@
 import React, { useState, useEffect } from "react";
+import { useParams } from "react-router-dom";
 import { useAlert } from "../../../hooks/useAlert";
 import { CustomAlert } from "../../../components/Alert";
-import { Container, Card, Row, Col, Button } from "react-bootstrap";
-import { ModalUpdate } from "../../../components/Modals/ModalUpdate";
 import { APICategory, APIPasswords } from "../../../api/api";
-import { updatePasswordValidation } from "../../../common/Validations";
 import { CustomCardText } from "../../../components/Utilities";
-
-import "./Passwords.scss";
+import { Button, Card, Col, Container, Row } from "react-bootstrap";
 import { ModalDelete } from "../../../components/Modals/ModalDelete";
+import { ModalUpdate } from "../../../components/Modals/ModalUpdate";
+import { updatePasswordValidation } from "../../../common/Validations";
 
-const Passwords = () => {
+const Category = () => {
   const [showAlert, displayAlert] = useAlert();
-  const [reload, setReload] = useAlert(false);
-  const [passwords, setPasswords] = useState([]);
+  const { categoryName, categoryId } = useParams();
+  const [reload, setReload] = useState(false);
+  const [passwords, setPasswords] = useState();
   const [categories, setCategories] = useState();
   const [passwordInfo, setPasswordInfo] = useState();
   const validationSchema = updatePasswordValidation();
@@ -22,7 +22,7 @@ const Passwords = () => {
   const [showModalDelete, setShowModalDelete] = useState(false);
 
   const fetchPasswords = async () => {
-    const res = await APIPasswords.fetchPasswords();
+    const res = await APIPasswords.fetchCategoryPasswords(categoryId);
     const json = await res.json();
 
     setPasswords(json);
@@ -32,26 +32,12 @@ const Passwords = () => {
     const res = await APICategory.fetchCategories();
     let json = await res.json();
 
-    if (!json.length) {
-      setCategories([
-        {
-          name: "You haven't created any category",
-        },
-      ]);
-      return;
-    }
-
     const newArray = [{ name: "None" }];
 
     newArray.push(...json);
 
     setCategories(newArray);
   };
-
-  useEffect(() => {
-    fetchPasswords();
-    fetchCategories();
-  }, [reload]);
 
   const handleSubmit = async (data) => {
     const res = await APIPasswords.updatePasswords(data);
@@ -81,23 +67,12 @@ const Passwords = () => {
 
   const showModalUpdateFunction = (passwordProp) => {
     const { name, password, _id, category, categoryName } = passwordProp;
-    let displayCategory = "";
-
-    if (!categories) {
-      displayCategory = "You haven't created any category";
-    }
-
-    if (categories && !category) {
-      displayCategory = categories[0].name;
-    }
-
-    if (category) displayCategory = categoryName;
 
     setPasswordInfo({
       id: _id,
       passwordName: name,
       password,
-      category: displayCategory,
+      category: categoryName,
     });
     setShowModalUpdate(true);
   };
@@ -107,12 +82,17 @@ const Passwords = () => {
     setShowModalDelete(true);
   };
 
+  useEffect(() => {
+    fetchPasswords();
+    fetchCategories();
+  }, [reload]);
+
   return (
     <Container className="passwords">
       <CustomAlert {...showAlert} />
-      <h1>Passwords</h1>
+      <h1>{categoryName} passwords</h1>
       <Row className="mt-4">
-        {passwords.map((password) => {
+        {passwords?.map((password) => {
           return (
             <Col md={6} lg={4} key={password._id} className="my-2">
               <Card className="card">
@@ -182,4 +162,4 @@ const Passwords = () => {
   );
 };
 
-export { Passwords };
+export { Category };
