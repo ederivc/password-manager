@@ -14,7 +14,7 @@ const Services = () => {
           <div className="item__body">
             <p>
               We provide you a wide variety of options so you can start creating
-              and customizing your password
+              and customizing your passwords
             </p>
           </div>
         </div>
