@@ -1,0 +1,71 @@
+@use "../../../common/common.scss";
+
+.company {
+  display: flex;
+  background-color: common.$transparent-blue;
+
+  padding: 5rem 8rem;
+
+  &__info {
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    color: #fff;
+    padding: 0 5rem;
+
+    h2 {
+      font-size: 2rem;
+      color: common.$light-blue;
+    }
+
+    p {
+      line-height: 1.8rem;
+      width: 30rem;
+    }
+
+    button {
+      width: 8rem;
+      color: #000;
+      cursor: pointer;
+      outline: none;
+      padding: 0.7rem 1.2rem;
+      border-radius: 10px;
+      font-size: 1rem;
+      font-family: inherit;
+      background: common.$medium-blue;
+      border: 1px solid transparent;
+      transition: 0.3s ease all;
+
+      &:hover {
+        border-color: common.$medium-blue;
+        background: rgba(common.$medium-blue, 0.1);
+        color: common.$medium-blue;
+      }
+
+      &:active {
+        border-color: common.$medium-blue;
+        background: linear-gradient(
+          rgba(common.$medium-blue, 0.2),
+          rgba(common.$medium-blue, 0.3)
+        );
+        color: common.$medium-blue;
+      }
+    }
+  }
+
+  &__grid {
+    width: 50%;
+    display: grid;
+    grid-template-areas:
+      "img1 img2 img3"
+      "img4 img5 img6";
+    align-items: center;
+
+    &__item {
+      img {
+        width: 10rem;
+      }
+    }
+  }
+}

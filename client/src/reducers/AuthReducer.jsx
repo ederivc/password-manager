@@ -1,4 +1,4 @@
-const authReducer = (state, action) => {
+const AuthReducer = (state, action) => {
   switch (action.type) {
     case "USER_IS_AUTH":
       const { name, email } = action.payload;
@@ -30,4 +30,4 @@ const authReducer = (state, action) => {
   }
 };
 
-export { authReducer };
+export { AuthReducer };

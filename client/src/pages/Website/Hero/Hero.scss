@@ -1,0 +1,77 @@
+@use "../../../common/common.scss";
+
+.hero {
+  position: relative;
+  margin: 0;
+  width: 100%;
+  height: 100vh;
+  max-width: 2000px;
+  max-height: 1100px;
+  overflow: hidden;
+
+  &__video {
+    position: absolute;
+    width: 100% !important;
+    height: auto !important;
+    -webkit-filter: blur(5px);
+    filter: blur(5px);
+    background-size: cover;
+    transition: 1s opacity;
+    z-index: -1;
+  }
+
+  &__content {
+    position: absolute;
+    left: 150px;
+    top: 220px;
+    font-size: 1.2rem;
+    color: common.$base-gray;
+    color: #fff;
+
+    h1 {
+      font-size: 4rem;
+      font-weight: 700;
+      letter-spacing: 2px;
+
+      strong {
+        color: common.$medium-blue;
+        color: common.$base-blue;
+        color: rgba(common.$medium-blue, 0.9);
+      }
+    }
+
+    h2 {
+      font-size: 2.5rem;
+    }
+
+    button {
+      display: block;
+      cursor: pointer;
+      outline: none;
+      padding: 0.75rem 1.25rem;
+      border-radius: 10px;
+      margin-top: 2rem;
+      font-size: 1rem;
+      background: common.$medium-blue;
+      color: #000;
+      border: 1px solid transparent;
+      transition: 0.3s ease all;
+
+      &:hover {
+        border-color: common.$base-color;
+        background: common.$base-color;
+        background-color: #fff;
+        color: common.$medium-blue;
+      }
+
+      &:active {
+        border-color: common.$medium-blue;
+        background: linear-gradient(
+          rgba(common.$medium-blue, 0.2),
+          rgba(common.$medium-blue, 0.3)
+        );
+        color: common.$medium-blue;
+      }
+    }
+  }
+}
