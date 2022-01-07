@@ -1,8 +1,8 @@
 import React from "react";
-import video1 from "../../assets/video1.mp4";
-import { Services } from "./Services/Services";
-import { Company } from "./Company/Company";
 import { Hero } from "./Hero/Hero";
+import { Company } from "./Company/Company";
+import { Pricing } from "./Pricing/Pricing";
+import { Services } from "./Services/Services";
 
 import "./Website.scss";
 
@@ -12,6 +12,7 @@ const Website = () => {
       <Hero />
       <Company />
       <Services />
+      <Pricing />
     </div>
   );
 };

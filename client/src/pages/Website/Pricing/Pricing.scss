@@ -1,0 +1,17 @@
+@use "../../../common/common.scss";
+
+.pricing {
+  padding: 5rem 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: common.$base-color;
+
+  &__list {
+    margin: 0;
+
+    li {
+      margin: 0.8rem 0;
+    }
+  }
+}

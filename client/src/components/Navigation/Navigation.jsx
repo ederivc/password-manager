@@ -80,11 +80,7 @@ const Navigation = () => {
             ) : (
               <>
                 <CustomLink to="/" text="About" onClick={menuToggleHandler} />
-                <CustomLink
-                  to="/"
-                  text="Discover"
-                  onClick={menuToggleHandler}
-                />
+                <CustomLink to="/" text="Pricing" onClick={menuToggleHandler} />
                 <CustomLink
                   to="/"
                   text="Services"
