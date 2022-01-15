@@ -1,0 +1,111 @@
+@use "../../../common/common.scss";
+
+.about-title {
+  margin: auto;
+  padding-top: 5rem;
+  padding-bottom: 2rem;
+  font-size: 3rem;
+  font-weight: 700;
+  color: common.$medium-blue;
+
+  span {
+    color: #fff;
+  }
+}
+
+.about {
+  display: grid;
+  max-width: 1600px;
+  margin: auto;
+  padding: 1rem 5rem;
+  grid-template-rows: repeat(3, 11rem);
+  grid-template-areas:
+    "mission mission mission vision vision"
+    "target target values values values"
+    "target target history history history";
+  gap: 2rem;
+
+  &__item {
+    padding: 0 1rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    border-radius: 10px;
+    gap: 0.5rem;
+
+    &__header {
+      font-size: 1.7rem;
+    }
+
+    &__body {
+      font-size: 1.1rem;
+    }
+  }
+
+  &__transparent {
+    background-color: common.$transparent-blue;
+    border: 1px solid common.$line-blue;
+    color: #aab4be;
+
+    .about__item__header {
+      color: common.$light-blue;
+    }
+  }
+
+  &__medium {
+    background-color: common.$medium-blue;
+    color: #d9e4f0;
+
+    .about__item__header {
+      color: common.$base-blue;
+    }
+  }
+
+  &__mission {
+    grid-area: mission;
+  }
+
+  &__vision {
+    grid-area: vision;
+  }
+
+  &__target {
+    grid-area: target;
+    width: 350px;
+    min-width: 280px;
+
+    gap: 2rem;
+
+    .about__item__header {
+      align-self: flex-start;
+    }
+
+    .about__item__body {
+      margin: 0 auto;
+
+      img {
+        height: 200px;
+        width: 200px;
+        min-height: 50px;
+      }
+    }
+  }
+
+  &__values {
+    grid-area: values;
+
+    .about__item__body {
+      display: flex;
+      justify-content: space-evenly;
+
+      img {
+        height: 95px;
+        width: 100px;
+      }
+    }
+  }
+
+  &__history {
+    grid-area: history;
+  }
+}

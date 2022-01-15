@@ -1,7 +1,24 @@
 @use "../../../common/common.scss";
 
+.princing-title {
+  margin: 0;
+  width: 100%;
+  font-size: 3rem;
+  font-weight: 700;
+  text-align: center;
+  padding-top: 2.5rem;
+  padding-bottom: 1.5rem;
+  color: common.$medium-blue;
+  background-color: common.$base-color;
+
+  span {
+    color: #fff;
+  }
+}
+
 .pricing {
   padding: 5rem 0;
+  padding-top: 2rem;
   display: flex;
   justify-content: center;
   align-items: center;

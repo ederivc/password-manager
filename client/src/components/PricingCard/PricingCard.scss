@@ -87,3 +87,11 @@
   color: #000;
   border: 2px solid common.$line-blue;
 }
+
+.pricing__card.middle {
+  .pricing__card__header {
+    :nth-child(3) {
+      color: #1f1e1e;
+    }
+  }
+}
