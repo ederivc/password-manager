@@ -1,16 +1,22 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;900&display=swap");
+
 $base-color: #0a1929;
 $base-blue: #001e3c;
 $medium-blue: #007fff;
+$line-blue: #265d97;
 $transparent-blue: #132f4c;
 $light-blue: #80bfff;
 $white-blue: #a5d8ff;
 $base-gray: #aab4be;
+
+$danger: rgb(148, 0, 13);
 
 body {
   max-width: 2000px;
   background-color: $base-blue !important;
   padding: 0;
   margin: auto !important;
+  font-family: "Roboto", sans-serif !important;
 }
 
 textarea:focus,
@@ -32,6 +38,11 @@ input[type="color"]:focus,
   border-color: $light-blue;
   box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset, 0 0 8px $light-blue;
   outline: 0 none;
+}
+
+.custom-alert {
+  margin-bottom: 1rem !important;
+  margin-top: 1rem !important;
 }
 
 @import "~bootstrap/scss/bootstrap";

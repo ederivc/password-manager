@@ -1,0 +1,180 @@
+@use "../../../common/common.scss";
+
+.company {
+  display: flex;
+  padding: 5rem 8rem;
+  background-color: common.$transparent-blue;
+
+  &__info {
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    color: #fff;
+    padding: 0 5rem;
+
+    h2 {
+      font-size: 2rem;
+      color: common.$light-blue;
+    }
+
+    p {
+      line-height: 1.8rem;
+      width: 30rem;
+    }
+
+    button {
+      width: 8rem;
+      color: #000;
+      cursor: pointer;
+      outline: none;
+      padding: 0.7rem 1.2rem;
+      border-radius: 10px;
+      font-size: 1rem;
+      font-family: inherit;
+      background: common.$medium-blue;
+      border: 1px solid transparent;
+      transition: 0.3s ease all;
+
+      &:hover {
+        border-color: common.$medium-blue;
+        background: rgba(common.$medium-blue, 0.1);
+        color: common.$medium-blue;
+      }
+
+      &:active {
+        border-color: common.$medium-blue;
+        background: linear-gradient(
+          rgba(common.$medium-blue, 0.2),
+          rgba(common.$medium-blue, 0.3)
+        );
+        color: common.$medium-blue;
+      }
+    }
+  }
+
+  &__grid {
+    width: 50%;
+    display: grid;
+    grid-template-areas:
+      "img1 img2 img3"
+      "img4 img5 img6";
+    align-items: center;
+
+    &__item {
+      img {
+        width: 10rem;
+      }
+    }
+  }
+}
+
+@media (max-width: 1400px) {
+  .company {
+    padding: 5rem;
+    justify-content: space-between;
+
+    &__info {
+      width: 40%;
+      padding: 0;
+
+      p {
+        width: auto;
+      }
+    }
+
+    &__grid {
+      &__item {
+        img {
+          width: 6rem;
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 920px) {
+  .company {
+    padding: 3rem;
+    flex-direction: column;
+
+    &__info {
+      width: 100%;
+      display: grid;
+      grid-template-areas:
+        "title . button"
+        "text text button";
+      justify-content: initial;
+      margin-bottom: 1.5rem;
+
+      h2 {
+        grid-area: title;
+      }
+
+      p {
+        grid-area: text;
+        max-width: 24rem;
+      }
+
+      button {
+        grid-area: button;
+        align-self: center;
+      }
+    }
+
+    &__grid {
+      width: 100%;
+      justify-items: center;
+    }
+  }
+}
+
+@media (max-width: 640px) {
+  .company {
+    &__info {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+
+      h2 {
+        margin-bottom: 0;
+      }
+
+      p {
+        margin: 0;
+        padding: 1rem 0;
+        text-align: center;
+      }
+
+      button {
+        padding: 0.5rem 1rem;
+      }
+    }
+
+    &__grid {
+      img {
+        width: 5rem;
+      }
+    }
+  }
+}
+
+@media (max-width: 420px) {
+  .company {
+    &__info {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+
+      h2 {
+        text-align: center;
+      }
+    }
+
+    &__grid {
+      img {
+        width: 3rem;
+      }
+    }
+  }
+}

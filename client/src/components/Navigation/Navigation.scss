@@ -1,27 +1,197 @@
 @use "../../common/common.scss";
 
-.navbar {
+$spacing-md: 16px;
+$spacing-lg: 32px;
+
+@mixin breakpoint($point) {
+  @if $point == 768px {
+    @media (min-width: 48em) {
+      @content;
+    }
+  }
+}
+
+.header {
   background-color: common.$base-color;
-  color: #fff !important;
+  width: 100%;
+  height: 76px;
+  padding: 0 1.5rem;
 
-  img {
-    height: 50px;
+  @include breakpoint(768px) {
+    padding: 0 3rem;
   }
-}
 
-.nav-link {
-  color: common.$light-blue !important;
-  font-weight: 700;
+  transition: 0.3s ease all;
 
-  &:hover {
-    background-color: common.$transparent-blue;
-    border-radius: 5px;
+  &__content {
+    overflow: hidden;
+    color: #fff;
+    margin: 0 auto;
+    max-width: 1920px;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: relative;
+    z-index: 100;
+
+    &__logo {
+      font-size: 1.5rem;
+      font-weight: bold;
+      text-decoration: none;
+      color: #fff;
+
+      img {
+        height: 47px;
+        margin-right: 1rem;
+        cursor: pointer;
+      }
+    }
+
+    &__nav {
+      top: 0;
+      right: 100%;
+      bottom: 0;
+      width: 100%;
+      position: fixed;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      background-color: common.$base-color;
+      backdrop-filter: blur(2px);
+      transform: translate(0);
+      transition: 0.3s ease transform;
+
+      @include breakpoint(768px) {
+        transform: none;
+        flex-direction: row;
+        background: transparent;
+        width: auto;
+        height: 100%;
+        position: static;
+      }
+
+      ul {
+        list-style: none;
+        padding: 0;
+        display: flex;
+        flex-direction: column;
+        margin-bottom: $spacing-lg;
+
+        @include breakpoint(768px) {
+          flex-direction: row;
+          align-items: center;
+          margin-bottom: 0;
+          margin-right: calc(0.5rem + $spacing-md);
+        }
+
+        li {
+          &:not(:last-child) {
+            margin-bottom: $spacing-lg;
+
+            @include breakpoint(768px) {
+              margin-bottom: 0;
+              margin-right: $spacing-md;
+            }
+          }
+
+          a {
+            text-decoration: none;
+            color: inherit;
+            padding: 0.75rem 1.25rem;
+            border-radius: 10px;
+            transition: 0.3s ease all;
+
+            &:hover {
+              background: rgba(#fff, 0.1);
+            }
+
+            &:active {
+              border-radius: calc(10px + 6px);
+              background: linear-gradient(rgba(#fff, 0.1), rgba(#fff, 0.2));
+            }
+          }
+
+          .a__btn:hover {
+            background: none;
+          }
+        }
+      }
+
+      &__btn,
+      &__logout {
+        cursor: pointer;
+        outline: none;
+        padding: 0.75rem 1.25rem;
+        border-radius: 10px;
+        font-size: 1rem;
+        font-family: inherit;
+        background: common.$medium-blue;
+        color: #000;
+        border: 1px solid transparent;
+        transition: 0.3s ease all;
+      }
+
+      &__btn {
+        color: #000;
+
+        &:hover {
+          border-color: common.$medium-blue;
+          background: rgba(common.$medium-blue, 0.1);
+          color: common.$medium-blue;
+        }
+
+        &:active {
+          border-color: common.$medium-blue;
+          background: linear-gradient(
+            rgba(common.$medium-blue, 0.2),
+            rgba(common.$medium-blue, 0.3)
+          );
+          color: common.$medium-blue;
+        }
+      }
+
+      &__logout {
+        color: #fff;
+
+        &:hover {
+          border-color: common.$line-blue;
+          background: rgba(common.$line-blue, 0.1);
+          color: common.$medium-blue;
+        }
+
+        &:active {
+          border-color: common.$line-blue;
+          background: linear-gradient(
+            rgba(common.$line-blue, 0.2),
+            rgba(common.$line-blue, 0.3)
+          );
+          color: common.$medium-blue;
+        }
+      }
+
+      &.isMenu {
+        transform: translate(100%);
+      }
+    }
+
+    &__toggle {
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      font-size: 2rem;
+      transition: 0.3s ease all;
+      position: relative;
+
+      &:hover {
+        color: common.$medium-blue;
+      }
+
+      @include breakpoint(768px) {
+        display: none;
+      }
+    }
   }
-}
-
-.navbar-toggler-icon {
-  background-color: common.$light-blue !important;
-  height: 35px !important;
-  width: 35px !important;
-  border-radius: 2px;
 }

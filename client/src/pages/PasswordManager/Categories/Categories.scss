@@ -1,0 +1,62 @@
+@use "../../../common/common.scss";
+
+.categories {
+  margin: 3rem 0;
+  color: #fff;
+
+  h1 {
+    text-align: center;
+  }
+
+  &__form {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+
+    button {
+      width: 5rem;
+      align-self: flex-end;
+    }
+  }
+
+  &__table {
+    background-color: common.$transparent-blue;
+    color: common.$white;
+    border-radius: 5px;
+    padding: 2rem !important;
+
+    thead,
+    td {
+      color: common.$white !important;
+      border: none !important;
+    }
+
+    thead,
+    tbody {
+      border-top: 1px solid common.$line-blue !important;
+      border-left: 1px solid common.$line-blue !important;
+      border-right: 1px solid common.$line-blue !important;
+    }
+
+    th {
+      color: common.$white-blue;
+    }
+
+    th,
+    td {
+      text-align: center;
+      padding: 1rem 0 !important;
+      min-width: 8rem;
+    }
+
+    tbody {
+      border-bottom: 1px solid common.$line-blue !important;
+    }
+
+    i {
+      cursor: pointer;
+      color: common.$white-blue;
+      font-size: 1.3rem;
+    }
+  }
+}
