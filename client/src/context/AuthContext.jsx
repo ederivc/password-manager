@@ -1,7 +1,7 @@
 import React, { useEffect, useReducer, createContext } from "react";
 import { APIUsers } from "../api/api";
 import { TYPES } from "../actions/authActions";
-import { authReducer } from "../reducers/authReducer";
+import { AuthReducer } from "../reducers/AuthReducer";
 
 const AuthContext = createContext();
 
@@ -13,7 +13,7 @@ const AuthProvider = ({ children }) => {
     isLoading: true,
   };
 
-  const [state, dispatch] = useReducer(authReducer, initialState);
+  const [state, dispatch] = useReducer(AuthReducer, initialState);
 
   const fetchAuthUser = async () => {
     const res = await APIUsers.fetchAuthUser();
