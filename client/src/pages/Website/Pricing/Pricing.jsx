@@ -6,7 +6,7 @@ import "./Pricing.scss";
 const Pricing = () => {
   return (
     <>
-      <h2 className="princing-title">
+      <h2 className="pricing-title">
         Choose a plan that <span>works for you</span>
       </h2>
       <div className="pricing">

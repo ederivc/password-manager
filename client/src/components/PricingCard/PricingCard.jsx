@@ -3,7 +3,6 @@ import React from "react";
 import "./PricingCard.scss";
 
 const PricingCard = ({
-  background,
   title,
   price,
   description,

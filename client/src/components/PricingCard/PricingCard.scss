@@ -85,13 +85,55 @@
   margin: 0 1.5rem;
   background-color: #eef2f7;
   color: #000;
-  border: 2px solid common.$line-blue;
+  border: none;
 }
 
 .pricing__card.middle {
   .pricing__card__header {
     :nth-child(3) {
       color: #1f1e1e;
+    }
+  }
+}
+
+@media (max-width: 1200px) {
+  .pricing__card {
+    height: 32rem;
+    padding: 0.5rem;
+  }
+}
+
+@media (max-width: 840px) {
+  .pricing__card {
+    &__header {
+      :nth-child(1) {
+        font-size: 1.05rem;
+        margin-bottom: 0rem;
+      }
+
+      strong {
+        font-size: 1.6rem;
+        padding-top: 1rem;
+        padding-bottom: 1rem;
+      }
+    }
+  }
+  .middle {
+    margin: 0;
+  }
+}
+
+@media (max-width: 440px) {
+  .pricing__card {
+    padding: 0;
+    height: auto;
+    width: auto;
+    max-width: 25rem;
+
+    &__header {
+      :nth-child(1) {
+        margin-bottom: 0;
+      }
     }
   }
 }

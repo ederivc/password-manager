@@ -8,8 +8,16 @@
   max-width: 2000px;
   max-height: 1100px;
   overflow: hidden;
+  background-color: common.$base-color;
+  opacity: 0.9;
+  background-image: radial-gradient(
+    common.$base-blue 3px,
+    common.$base-color 3px
+  );
+  background-size: 40px 40px;
 
   &__video {
+    display: none;
     position: absolute;
     width: 100% !important;
     height: auto !important;
@@ -71,6 +79,83 @@
           rgba(common.$medium-blue, 0.3)
         );
         color: common.$medium-blue;
+      }
+    }
+  }
+}
+
+@media (max-width: 1400px) {
+  .hero {
+    height: 70vh;
+
+    &__content {
+      left: 100px;
+      top: 150px;
+
+      h1 {
+        font-size: 3rem;
+      }
+
+      h2 {
+        font-size: 2rem;
+      }
+    }
+  }
+}
+
+@media (max-width: 920px) {
+  .hero {
+    height: 45vh;
+
+    &__content {
+      top: 80px;
+      left: 60px;
+
+      h1 {
+        font-size: 2rem;
+      }
+
+      h2 {
+        font-size: 1.5rem;
+      }
+
+      span {
+        font-size: 1rem;
+      }
+
+      button {
+        margin-top: 1rem;
+      }
+    }
+  }
+}
+
+@media (max-width: 640px) {
+  .hero {
+    height: 50vh;
+    min-width: 0;
+    display: flex;
+
+    &__video {
+      display: none;
+    }
+
+    &__content {
+      min-width: 0;
+      margin: auto;
+      position: initial;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      padding: 0 1rem;
+
+      h2 {
+        font-size: 1.5rem;
+      }
+
+      button {
+        padding: 0.5rem 1rem;
       }
     }
   }

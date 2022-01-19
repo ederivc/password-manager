@@ -58,10 +58,12 @@ const About = () => {
           <div className="about__item__header">
             <strong>Our history</strong>
           </div>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Laborum
-          voluptatem nihil, quibusdam accusamus ipsam doloremque recusandae
-          blanditiis modi illo natus sapiente veritatis cum at! Temporibus nihil
-          expedita maxime quod sapiente.
+          <div className="about__item__body">
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Laborum
+            voluptatem nihil, quibusdam accusamus ipsam doloremque recusandae
+            blanditiis modi illo natus sapiente veritatis cum at! Temporibus
+            nihil expedita maxime quod sapiente.
+          </div>
         </div>
       </div>
     </>

@@ -8,7 +8,7 @@ const Services = () => {
       <div className="services__flex">
         <div className="services__flex__item">
           <div className="item__header">
-            <i class="fas fa-tools"></i>
+            <i className="fas fa-tools"></i>
             Create your password
           </div>
           <div className="item__body">
@@ -18,10 +18,10 @@ const Services = () => {
             </p>
           </div>
         </div>
-        <i class="fas fa-arrow-down"></i>
+        <i className="fas fa-arrow-down"></i>
         <div className="services__flex__item">
           <div className="item__header">
-            <i class="fas fa-tools"></i>
+            <i className="fas fa-tools"></i>
             Organize your passwords
           </div>
           <div className="item__body">
@@ -35,7 +35,8 @@ const Services = () => {
       <div className="services__title">
         <h2>
           Powerful tools to help you
-          <h2 className="services__blue">create and manage</h2> your passwords
+          <span className="services__blue">create and manage</span> your
+          passwords
         </h2>
       </div>
     </div>

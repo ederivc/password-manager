@@ -1,4 +1,4 @@
-@use "../../../common/common.scss";
+// @use "../../../common/common.scss";
 
 .about-title {
   margin: auto;
@@ -6,7 +6,8 @@
   padding-bottom: 2rem;
   font-size: 3rem;
   font-weight: 700;
-  color: common.$medium-blue;
+  // color: common.$medium-blue;
+  color: #007fff;
 
   span {
     color: #fff;
@@ -38,26 +39,30 @@
     }
 
     &__body {
-      font-size: 1.1rem;
+      font-size: 1rem;
     }
   }
 
   &__transparent {
-    background-color: common.$transparent-blue;
-    border: 1px solid common.$line-blue;
+    // background-color: common.$transparent-blue;
+    background-color: #132f4c;
+    // border: 1px solid common.$line-blue;
+    border: 1px solid #265d97;
     color: #aab4be;
 
     .about__item__header {
-      color: common.$light-blue;
+      // color: common.$light-blue;
+      color: #80bfff;
     }
   }
 
   &__medium {
-    background-color: common.$medium-blue;
     color: #d9e4f0;
+    background-color: #0a1929;
+    border: 1px solid #265d97;
 
     .about__item__header {
-      color: common.$base-blue;
+      color: #80bfff;
     }
   }
 
@@ -73,7 +78,6 @@
     grid-area: target;
     width: 350px;
     min-width: 280px;
-
     gap: 2rem;
 
     .about__item__header {
@@ -107,5 +111,138 @@
 
   &__history {
     grid-area: history;
+  }
+}
+
+@media (max-width: 1400px) {
+  .about-title {
+    font-size: 2.7rem;
+  }
+
+  .about {
+    &__item {
+      &__body {
+        font-size: 0.95rem;
+      }
+    }
+
+    &__values {
+      .about__item__body {
+        img {
+          height: 80px;
+          width: 80px;
+        }
+      }
+    }
+
+    &__target {
+      .about__item__body {
+        img {
+          height: 180px;
+          width: 180px;
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 1100px) {
+  .about {
+    grid-template-rows: repeat(3, 10rem);
+
+    &__values {
+      .about__item__body {
+        img {
+          height: 65px;
+          width: 65px;
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 1025px) {
+  .about {
+    grid-template-rows: repeat(3, auto);
+
+    &__item {
+      padding: 1rem;
+    }
+
+    &__target {
+      max-width: 300px;
+      width: auto;
+
+      .about__item__body {
+        img {
+          height: 150px;
+          width: 150px;
+        }
+      }
+    }
+
+    &__values {
+      .about__item__body {
+        img {
+          height: 50px;
+          width: 50px;
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 840px) {
+  .about-title {
+    padding-top: 2rem;
+    padding-bottom: 1.5rem;
+    font-size: 2rem;
+  }
+  .about {
+    grid-template-areas:
+      "mission mission mission vision vision"
+      "history history history history history"
+      "values values values values values";
+
+    &__item {
+      &__header {
+        font-size: 1.3rem;
+      }
+
+      &__body {
+        font-size: 0.9rem;
+      }
+    }
+
+    &__target {
+      display: none;
+    }
+  }
+}
+
+@media (max-width: 540px) {
+  .about-title {
+    font-size: 1.7rem;
+    padding-bottom: 0.5rem;
+  }
+
+  .about {
+    padding-left: 2rem;
+    padding-right: 2rem;
+    padding-bottom: 3rem;
+    grid-template-areas:
+      "mission mission mission mission mission"
+      "vision vision vision vision vision"
+      "history history history history history"
+      "values values values values values";
+
+    &__values {
+      .about__item__body {
+        img {
+          height: 40px;
+          width: 40px;
+        }
+      }
+    }
   }
 }
