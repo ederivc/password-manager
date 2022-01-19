@@ -1,13 +1,12 @@
-// @use "../../../common/common.scss";
+@use "../../../common/common.scss";
 
 .about-title {
   margin: auto;
-  padding-top: 5rem;
+  padding-top: 3rem;
   padding-bottom: 2rem;
   font-size: 3rem;
   font-weight: 700;
-  // color: common.$medium-blue;
-  color: #007fff;
+  color: common.$medium-blue;
 
   span {
     color: #fff;
@@ -19,6 +18,7 @@
   max-width: 1600px;
   margin: auto;
   padding: 1rem 5rem;
+  padding-bottom: 4rem;
   grid-template-rows: repeat(3, 11rem);
   grid-template-areas:
     "mission mission mission vision vision"
@@ -44,25 +44,22 @@
   }
 
   &__transparent {
-    // background-color: common.$transparent-blue;
-    background-color: #132f4c;
-    // border: 1px solid common.$line-blue;
-    border: 1px solid #265d97;
-    color: #aab4be;
+    background-color: common.$transparent-blue;
+    border: 1px solid common.$line-blue;
+    color: common.$base-gray;
 
     .about__item__header {
-      // color: common.$light-blue;
-      color: #80bfff;
+      color: common.$light-blue;
     }
   }
 
   &__medium {
     color: #d9e4f0;
-    background-color: #0a1929;
-    border: 1px solid #265d97;
+    background-color: common.$base-color;
+    border: 1px solid common.$line-blue;
 
     .about__item__header {
-      color: #80bfff;
+      color: common.$medium-blue;
     }
   }
 

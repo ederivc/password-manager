@@ -4,6 +4,7 @@ import { About } from "./About/About";
 import { Company } from "./Company/Company";
 import { Pricing } from "./Pricing/Pricing";
 import { Services } from "./Services/Services";
+import { Footer } from "../../components/Footer/Footer";
 
 import "./Website.scss";
 
@@ -15,6 +16,7 @@ const Website = () => {
       <Services />
       <Pricing />
       <About />
+      <Footer />
     </div>
   );
 };

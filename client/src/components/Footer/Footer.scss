@@ -1,0 +1,76 @@
+@use "../../common/common.scss";
+
+.footer {
+  padding: 3rem 0;
+  background-color: common.$base-color;
+  margin: auto;
+  width: 100%;
+  color: #fff;
+
+  &__info {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    h4 {
+      font-weight: 700;
+      font-size: 1.8rem;
+      letter-spacing: 2px;
+    }
+
+    i {
+      font-size: 1.5rem;
+    }
+
+    &__down {
+      width: 15rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-around;
+
+      &:hover {
+        cursor: pointer;
+      }
+    }
+  }
+
+  &__copyright {
+    background-color: common.$base-color;
+    margin-bottom: 0;
+    text-align: center;
+    color: common.$base-gray;
+    padding-bottom: 2rem;
+
+    p {
+      margin-bottom: 0;
+    }
+  }
+}
+
+@media (max-width: 750px) {
+  .footer {
+    padding-right: 1.5rem;
+    padding-left: 1.5rem;
+    padding-bottom: 2rem;
+
+    &__info {
+      h4 {
+        font-size: 1.5rem;
+      }
+
+      p {
+        font-size: 0.9rem;
+      }
+
+      i {
+        font-size: 1.2rem;
+      }
+    }
+
+    &__copyright {
+      padding-right: 1.5rem;
+      padding-left: 1.5rem;
+    }
+  }
+}
