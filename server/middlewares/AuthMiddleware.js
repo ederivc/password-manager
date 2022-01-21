@@ -21,4 +21,16 @@ const validateToken = (req, res, next) => {
   }
 };
 
-module.exports = { validateToken };
+const validateTemporalToken = (token) => {
+  try {
+    const validToken = verify(token, process.env.SECRET_ACCESS_TOKEN);
+
+    if (validToken) {
+      return validToken.email;
+    }
+  } catch (err) {
+    return false;
+  }
+};
+
+module.exports = { validateToken, validateTemporalToken };

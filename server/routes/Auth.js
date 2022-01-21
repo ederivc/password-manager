@@ -13,4 +13,6 @@ router.get("/fetchAuthUser", validateToken, async (req, res) => {
   return res.json(req.user);
 });
 
+router.get("/activateAccount/:token", authController.activateAccount);
+
 module.exports = router;
