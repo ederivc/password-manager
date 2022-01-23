@@ -176,6 +176,8 @@ const Passwords = () => {
           showModalDelete={showModalDelete}
           setShowModalDelete={setShowModalDelete}
           handleDelete={handleDelete}
+          title="Delete Password"
+          text="Are you sure you want to delete this password?"
         />
       )}
     </Container>

@@ -1,58 +1,46 @@
-import React, { useEffect } from "react";
+import React from "react";
 import * as Yup from "yup";
 import { Formik } from "formik";
-import { url } from "../../../api/api";
-import { useAuth } from "../../../hooks/useAuth";
+import { useParams, useNavigate } from "react-router-dom";
+import { APIUsers, url } from "../../../api/api";
 import { useAlert } from "../../../hooks/useAlert";
-import { Form, Row, Button, Container, Col } from "react-bootstrap";
-import { useNavigate } from "react-router-dom";
 import { CustomAlert } from "../../../components/Alert";
 import { CustomInput } from "../../../components/CustomInput";
+import { Container, Row, Button, Form } from "react-bootstrap";
 
-import "./Register.scss";
-
-const Register = () => {
+const ResetPassword = () => {
   const navigate = useNavigate();
-  const { isAuth, registerUser } = useAuth();
+  const { userId, token } = useParams();
   const [showAlert, displayAlert] = useAlert();
+
   const validationSchema = Yup.object().shape({
-    name: Yup.string().min(5).max(10).required().default(""),
-    email: Yup.string().email().min(8).required().default(""),
     password: Yup.string().min(8).max(15).required().default(""),
     confirmPassword: Yup.string().min(8).max(15).required().default(""),
   });
 
-  useEffect(() => {
-    if (isAuth) navigate("/home");
-  });
-
-  const handleSubmit = async (data, props) => {
+  const handleSubmit = async (data) => {
     if (data.password !== data.confirmPassword) {
       displayAlert("Passwords do not match", "danger");
       return;
     }
 
-    const { res, json } = await registerUser(data);
+    const userData = { ...data, userId, token };
 
-    if (res.status === 200) {
-      displayAlert(
-        "Registration successfully completed, please check your email to activate your account",
-        "success"
-      );
-      props.resetForm();
-    } else {
+    const res = await APIUsers.resetPassword(userData);
+    const json = await res.json();
+
+    if (res.ok) navigate("/login");
+
+    if (res.status === 400) {
       displayAlert(`${json.error}`, "danger");
     }
   };
 
   return (
-    <Container className="wrapper">
-      <div className="register">
-        <Col md={6} className="register__img">
-          <img src={`${url}/img/register.jpg`} alt="" />
-        </Col>
-        <Col md={6} className="register__form">
-          <h2 className="form-title">Sign Up</h2>
+    <Container fluid className="login">
+      <div className="login__content">
+        <div className="login__info">
+          <h1>Reset Password</h1>
           <Formik
             initialValues={validationSchema.default()}
             validationSchema={validationSchema}
@@ -61,11 +49,9 @@ const Register = () => {
             validateOnBlur={false}
           >
             {({ handleSubmit }) => (
-              <Form noValidate onSubmit={handleSubmit}>
+              <Form noValidate onSubmit={handleSubmit} className="login__form">
                 <CustomAlert {...showAlert} />
                 <Row>
-                  <CustomInput label="Name" name="name" type="text" />
-                  <CustomInput label="Email" name="email" type="email" />
                   <CustomInput
                     label="Password"
                     name="password"
@@ -77,16 +63,17 @@ const Register = () => {
                     type="password"
                   />
                 </Row>
-                <Button type="submit" className="register__btn">
-                  Create Account
-                </Button>
+                <Button type="submit">Reset Password</Button>
               </Form>
             )}
           </Formik>
-        </Col>
+        </div>
+        <div className="login__image">
+          <img src={`${url}/img/password.png`} alt="passwordmanager" />
+        </div>
       </div>
     </Container>
   );
 };
 
-export { Register };
+export { ResetPassword };

@@ -66,7 +66,7 @@ const Category = () => {
   };
 
   const showModalUpdateFunction = (passwordProp) => {
-    const { name, password, _id, category, categoryName } = passwordProp;
+    const { name, password, _id, categoryName } = passwordProp;
 
     setPasswordInfo({
       id: _id,

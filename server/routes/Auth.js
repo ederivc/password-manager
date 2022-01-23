@@ -14,5 +14,8 @@ router.get("/fetchAuthUser", validateToken, async (req, res) => {
 });
 
 router.get("/activateAccount/:token", authController.activateAccount);
+router.post("/forgotPassword", authController.forgotPassword);
+router.post("/resetPassword", authController.resetPassword);
+router.get("/resetPassword/:token", authController.redirectResetPassword);
 
 module.exports = router;

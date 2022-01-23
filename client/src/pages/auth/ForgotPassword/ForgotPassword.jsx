@@ -1,35 +1,29 @@
-import React, { useEffect } from "react";
+import React from "react";
 import * as Yup from "yup";
 import { Formik } from "formik";
-import { url } from "../../../api/api";
-import { useAuth } from "../../../hooks/useAuth";
+import { APIUsers, url } from "../../../api/api";
 import { useAlert } from "../../../hooks/useAlert";
-import { Link, useNavigate } from "react-router-dom";
 import { CustomAlert } from "../../../components/Alert";
-import { Container, Form, Button, Row } from "react-bootstrap";
 import { CustomInput } from "../../../components/CustomInput";
+import { Container, Row, Button, Form } from "react-bootstrap";
 
-import "./Login.scss";
-
-const Login = () => {
-  const navigate = useNavigate();
-  const { isAuth, loginUser } = useAuth();
+const ForgotPassword = () => {
   const [showAlert, displayAlert] = useAlert();
+
   const validationSchema = Yup.object().shape({
     email: Yup.string().email().min(8).required().default(""),
-    password: Yup.string().min(1).max(15).required().default(""),
   });
 
-  useEffect(() => {
-    if (isAuth) navigate("/home");
-  });
+  const handleSubmit = async (data, props) => {
+    const res = await APIUsers.forgotPassword(data);
+    const json = await res.json();
 
-  const handleSubmit = async (data) => {
-    const { res, json } = await loginUser(data);
+    if (res.ok) {
+      displayAlert(`${json.success}`, "success");
+      props.resetForm();
+    }
 
-    if (res.status === 200) {
-      navigate("/home");
-    } else {
+    if (res.status === 400) {
       displayAlert(`${json.error}`, "danger");
     }
   };
@@ -38,7 +32,7 @@ const Login = () => {
     <Container fluid className="login">
       <div className="login__content">
         <div className="login__info">
-          <h1>Sign In</h1>
+          <h1>Forgot Password</h1>
           <Formik
             initialValues={validationSchema.default()}
             validationSchema={validationSchema}
@@ -51,19 +45,8 @@ const Login = () => {
                 <CustomAlert {...showAlert} />
                 <Row>
                   <CustomInput label="Email" name="email" type="email" />
-                  <CustomInput
-                    label="Password"
-                    name="password"
-                    type="password"
-                  />
                 </Row>
-                <Button type="submit">Login</Button>
-                <Container className="form__forgot">
-                  <Link to="/forgotPassword">Forgot Password?</Link>
-                </Container>
-                <Container className="form__register">
-                  Don't have an account? <Link to="/register">Register</Link>
-                </Container>
+                <Button type="submit">Send Reset Link</Button>
               </Form>
             )}
           </Formik>
@@ -76,4 +59,4 @@ const Login = () => {
   );
 };
 
-export { Login };
+export { ForgotPassword };

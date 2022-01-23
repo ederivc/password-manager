@@ -9,20 +9,34 @@ const transporter = nodemailer.createTransport({
   },
 });
 
-const mailRegisterOptions = (email, token) => {
+const mailRegister = (email, token) => {
   return {
     from: "vallaveterinaria569@gmail.com",
     to: email,
     subject: "Password Manager | Activate your Account",
     text: `
-    Hi! Thanks for registering. To activate your account, please clcik on the following link".
-    http://localhost:5000/api/auth/activateAccount/${token}
+    Hi! Thanks for registering. To activate your account, please clcik on the following link
+    ${process.env.SERVER}/api/auth/activateAccount/${token}
     `,
   };
 };
 
-const sendEmail = (email, token) => {
-  transporter.sendMail(mailRegisterOptions(email, token), (error, info) => {
+const mailResetPassword = (email, token) => {
+  return {
+    from: process.env.EMAIL,
+    to: email,
+    subject: "Password Manager | Reset Password",
+    text: `
+    Hi, We received a request to reset the password of your account.
+    To reset your password, click on the link below:
+    ${process.env.SERVER}/api/auth/resetPassword/${token}
+    If this was a mistake, just ignore this email and nothing will happen.
+    `,
+  };
+};
+
+const sendEmail = (emailType, email, token) => {
+  transporter.sendMail(emailType(email, token), (error, info) => {
     if (error) {
       console.log(error);
     } else {
@@ -31,4 +45,4 @@ const sendEmail = (email, token) => {
   });
 };
 
-module.exports = { sendEmail };
+module.exports = { sendEmail, mailRegister, mailResetPassword };
