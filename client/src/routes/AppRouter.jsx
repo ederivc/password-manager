@@ -5,7 +5,6 @@ import { PrivateRoute } from "./PrivateRoute";
 import { Login } from "../pages/auth/Login/Login";
 import { Website } from "../pages/Website/Website";
 import { NotFound } from "../pages/NotFound/NotFound";
-import { Home } from "../pages/PasswordManager/Home/Home";
 import { Register } from "../pages/auth/Register/Register";
 import { Account } from "../pages/PasswordManager/Account/Account";
 import { Category } from "../pages/PasswordManager/Category/Category";
@@ -33,16 +32,6 @@ const AppRouter = () => {
             element={<ResetPassword />}
           />
           {/* PRIVATE ROUTES */}
-          <Route
-            path="/home"
-            element={
-              !isLoading && (
-                <PrivateRoute>
-                  <Home />
-                </PrivateRoute>
-              )
-            }
-          />
           <Route
             path="/generatePassword"
             element={

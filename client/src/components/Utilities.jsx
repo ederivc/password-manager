@@ -4,12 +4,13 @@ import { Link } from "react-router-dom";
 const CustomBtnRow = ({
   label,
   colClass,
+  rowClass = "",
   icon = null,
   onClick = null,
   children,
 }) => {
   return (
-    <Row>
+    <Row className={`${rowClass} py-sm-2 py-0`}>
       <Col className={colClass}>
         <label>{label}</label>
       </Col>

@@ -162,7 +162,7 @@ exports.resetPassword = async (req, res) => {
 
     user.save();
 
-    res.json({ success: "Password updated" });
+    return res.json({ success: "Password updated" });
   }
 
   return res.status(400).json({

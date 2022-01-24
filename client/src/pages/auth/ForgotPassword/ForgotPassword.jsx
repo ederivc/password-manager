@@ -1,18 +1,14 @@
 import React from "react";
-import * as Yup from "yup";
 import { Formik } from "formik";
 import { APIUsers, url } from "../../../api/api";
 import { useAlert } from "../../../hooks/useAlert";
 import { CustomAlert } from "../../../components/Alert";
+import { emailSchema } from "../../../helpers/validations";
 import { CustomInput } from "../../../components/CustomInput";
 import { Container, Row, Button, Form } from "react-bootstrap";
 
 const ForgotPassword = () => {
   const [showAlert, displayAlert] = useAlert();
-
-  const validationSchema = Yup.object().shape({
-    email: Yup.string().email().min(8).required().default(""),
-  });
 
   const handleSubmit = async (data, props) => {
     const res = await APIUsers.forgotPassword(data);
@@ -34,8 +30,8 @@ const ForgotPassword = () => {
         <div className="login__info">
           <h1>Forgot Password</h1>
           <Formik
-            initialValues={validationSchema.default()}
-            validationSchema={validationSchema}
+            initialValues={emailSchema.default()}
+            validationSchema={emailSchema}
             onSubmit={handleSubmit}
             validateOnChange={false}
             validateOnBlur={false}

@@ -4,10 +4,10 @@ import { useAlert } from "../../../hooks/useAlert";
 import { CustomAlert } from "../../../components/Alert";
 import { APICategory, APIPasswords } from "../../../api/api";
 import { CustomCardText } from "../../../components/Utilities";
+import { updatePasswordSchema } from "../../../helpers/validations";
 import { Button, Card, Col, Container, Row } from "react-bootstrap";
 import { ModalDelete } from "../../../components/Modals/ModalDelete";
 import { ModalUpdate } from "../../../components/Modals/ModalUpdate";
-import { updatePasswordValidation } from "../../../common/Validations";
 
 const Category = () => {
   const [showAlert, displayAlert] = useAlert();
@@ -16,7 +16,7 @@ const Category = () => {
   const [passwords, setPasswords] = useState();
   const [categories, setCategories] = useState();
   const [passwordInfo, setPasswordInfo] = useState();
-  const validationSchema = updatePasswordValidation();
+  const validationSchema = updatePasswordSchema();
   const [passwordToDelete, setPasswordToDelete] = useState();
   const [showModalUpdate, setShowModalUpdate] = useState(false);
   const [showModalDelete, setShowModalDelete] = useState(false);

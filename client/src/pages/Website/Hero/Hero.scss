@@ -16,18 +16,6 @@
   );
   background-size: 40px 40px;
 
-  &__video {
-    display: none;
-    position: absolute;
-    width: 100% !important;
-    height: auto !important;
-    -webkit-filter: blur(5px);
-    filter: blur(5px);
-    background-size: cover;
-    transition: 1s opacity;
-    z-index: -1;
-  }
-
   &__content {
     position: absolute;
     left: 150px;

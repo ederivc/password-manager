@@ -1,22 +1,17 @@
 import React from "react";
-import * as Yup from "yup";
 import { Formik } from "formik";
-import { useParams, useNavigate } from "react-router-dom";
 import { APIUsers, url } from "../../../api/api";
 import { useAlert } from "../../../hooks/useAlert";
 import { CustomAlert } from "../../../components/Alert";
+import { useParams, useNavigate } from "react-router-dom";
 import { CustomInput } from "../../../components/CustomInput";
+import { passwordSchema } from "../../../helpers/validations";
 import { Container, Row, Button, Form } from "react-bootstrap";
 
 const ResetPassword = () => {
   const navigate = useNavigate();
   const { userId, token } = useParams();
   const [showAlert, displayAlert] = useAlert();
-
-  const validationSchema = Yup.object().shape({
-    password: Yup.string().min(8).max(15).required().default(""),
-    confirmPassword: Yup.string().min(8).max(15).required().default(""),
-  });
 
   const handleSubmit = async (data) => {
     if (data.password !== data.confirmPassword) {
@@ -42,8 +37,8 @@ const ResetPassword = () => {
         <div className="login__info">
           <h1>Reset Password</h1>
           <Formik
-            initialValues={validationSchema.default()}
-            validationSchema={validationSchema}
+            initialValues={passwordSchema.default()}
+            validationSchema={passwordSchema}
             onSubmit={handleSubmit}
             validateOnChange={false}
             validateOnBlur={false}

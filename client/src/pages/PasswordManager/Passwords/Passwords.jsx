@@ -1,14 +1,14 @@
 import React, { useState, useEffect } from "react";
 import { useAlert } from "../../../hooks/useAlert";
 import { CustomAlert } from "../../../components/Alert";
-import { Container, Card, Row, Col, Button } from "react-bootstrap";
-import { ModalUpdate } from "../../../components/Modals/ModalUpdate";
 import { APICategory, APIPasswords } from "../../../api/api";
-import { updatePasswordValidation } from "../../../common/Validations";
 import { CustomCardText } from "../../../components/Utilities";
+import { Container, Card, Row, Col, Button } from "react-bootstrap";
+import { updatePasswordSchema } from "../../../helpers/validations";
+import { ModalDelete } from "../../../components/Modals/ModalDelete";
+import { ModalUpdate } from "../../../components/Modals/ModalUpdate";
 
 import "./Passwords.scss";
-import { ModalDelete } from "../../../components/Modals/ModalDelete";
 
 const Passwords = () => {
   const [showAlert, displayAlert] = useAlert();
@@ -16,7 +16,7 @@ const Passwords = () => {
   const [passwords, setPasswords] = useState([]);
   const [categories, setCategories] = useState();
   const [passwordInfo, setPasswordInfo] = useState();
-  const validationSchema = updatePasswordValidation();
+  const validationSchema = updatePasswordSchema();
   const [passwordToDelete, setPasswordToDelete] = useState();
   const [showModalUpdate, setShowModalUpdate] = useState(false);
   const [showModalDelete, setShowModalDelete] = useState(false);
