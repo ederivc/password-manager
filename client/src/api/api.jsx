@@ -1,4 +1,5 @@
-const url = "http://localhost:5000";
+const url = process.env.REACT_APP_SERVER_URL;
+// const url = "http://127.0.0.1:5000";
 
 const RESOURCE_URLS = {
   FETCH_AUTH_USER: "/api/auth/fetchAuthUser",
@@ -16,7 +17,6 @@ const RESOURCE_URLS = {
   CREATE_CATEGORY: "/api/categories/createCategory",
   FETCH_CATEGORY: "/api/categories/getCategories",
   FETCH_CATEGORY_PASSWORDS: "/api/password/getCategoryPasswords",
-  // UPDATE_CATEGORY: "/api/categories/updateCategory",
 };
 class APIUsers {
   static async fetchAuthUser() {
