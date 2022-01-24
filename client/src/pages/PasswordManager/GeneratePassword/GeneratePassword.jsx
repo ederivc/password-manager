@@ -3,7 +3,7 @@ import RandExp from "randexp";
 import { APIPasswords } from "../../../api/api";
 import { useAlert } from "../../../hooks/useAlert";
 import { CustomAlert } from "../../../components/Alert";
-import { Container, Form, Row, Col } from "react-bootstrap";
+import { Container, Row, Col } from "react-bootstrap";
 import { CustomBtnRow } from "../../../components/Utilities";
 
 import "./GeneratePassword.scss";
@@ -90,95 +90,86 @@ const GeneratePassword = () => {
   }, [validations]);
 
   return (
-    <Container className="password">
-      <Form>
-        <Container>
-          <CustomAlert {...showAlert} />
-          <h1>Generate Password</h1>
-          <CustomBtnRow label="Number of Characters" colClass="password__col">
-            <button
-              type="button"
-              onClick={() =>
-                setValidations({
-                  ...validations,
-                  characters: validations.characters - 1,
-                })
-              }
-            >
-              <i className="fas fa-minus"></i>
+    <Container className="password pb-5">
+      <Container className="password__inner">
+        <CustomAlert {...showAlert} />
+        <h1>Generate Password</h1>
+        <CustomBtnRow
+          label="Number of Characters"
+          colClass="password__col"
+          rowClass="numbersCol"
+        >
+          <button
+            type="button"
+            onClick={() =>
+              setValidations({
+                ...validations,
+                characters: validations.characters - 1,
+              })
+            }
+          >
+            <i className="fas fa-minus"></i>
+          </button>
+          <span className="mx-3">{validations.characters}</span>
+          <button
+            type="button"
+            onClick={() =>
+              setValidations({
+                ...validations,
+                characters: validations.characters + 1,
+              })
+            }
+          >
+            <i className="fas fa-plus"></i>
+          </button>
+        </CustomBtnRow>
+        <CustomBtnRow
+          label="Symbols?"
+          colClass="password__col"
+          icon={validations.symbols ? "fas fa-check" : "fas fa-times"}
+          onClick={() =>
+            setValidations({
+              ...validations,
+              symbols: !validations.symbols,
+            })
+          }
+        />
+        <CustomBtnRow
+          label="Numbers?"
+          colClass="password__col"
+          icon={validations.numbers ? "fas fa-check" : "fas fa-times"}
+          onClick={() =>
+            setValidations({
+              ...validations,
+              numbers: !validations.numbers,
+            })
+          }
+        />
+        <CustomBtnRow
+          label="Capital Letters?"
+          colClass="password__col"
+          icon={validations.capitals ? "fas fa-check" : "fas fa-times"}
+          onClick={() =>
+            setValidations({
+              ...validations,
+              capitals: !validations.capitals,
+            })
+          }
+        />
+        <Row className="password__buttons__result">
+          <Col className="password__col">
+            <button type="submit" onClick={handleSubmit}>
+              <span className="mx-2">Save</span>
+              <i className="fas fa-lock mr-2"></i>
             </button>
-            <span className="mx-3">{validations.characters}</span>
-            <button
-              type="button"
-              onClick={() =>
-                setValidations({
-                  ...validations,
-                  characters: validations.characters + 1,
-                })
-              }
-            >
-              <i className="fas fa-plus"></i>
-            </button>
-          </CustomBtnRow>
-          <CustomBtnRow
-            label="Symbols?"
-            colClass="password__col"
-            icon={validations.symbols ? "fas fa-check" : "fas fa-times"}
-            onClick={() =>
-              setValidations({
-                ...validations,
-                symbols: !validations.symbols,
-              })
-            }
-          />
-          <CustomBtnRow
-            label="Numbers?"
-            colClass="password__col"
-            icon={validations.numbers ? "fas fa-check" : "fas fa-times"}
-            onClick={() =>
-              setValidations({
-                ...validations,
-                numbers: !validations.numbers,
-              })
-            }
-          />
-          <CustomBtnRow
-            label="Capital Letters?"
-            colClass="password__col"
-            icon={validations.capitals ? "fas fa-check" : "fas fa-times"}
-            onClick={() =>
-              setValidations({
-                ...validations,
-                capitals: !validations.capitals,
-              })
-            }
-          />
-          {/* <Row>
-            <Col className="password__col">Category</Col>
-            <Col className="password__col">
-              <Form.Select aria-label="">
-                <option>Open this select menu</option>
-                <option value="1">One</option>
-                <option value="2">Two</option>
-                <option value="3">Three</option>
-              </Form.Select>
-            </Col>
-          </Row> */}
-          <Row>
-            <Col className="password__col">
-              <button type="submit" onClick={handleSubmit}>
-                <span className="mx-2">Save</span>
-                <i className="fas fa-lock mr-2"></i>
-              </button>
-            </Col>
-            <Col className="password__col password__result">
-              <div>
-                <button type="button">{password}</button>
-              </div>
-            </Col>
-          </Row>
-        </Container>
-      </Form>
+          </Col>
+          <Col className="password__col password__result">
+            <div>
+              <button type="button">{password}</button>
+            </div>
+          </Col>
+        </Row>
+      </Container>
     </Container>
   );
 };

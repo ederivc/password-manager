@@ -7,6 +7,8 @@ const UserSchema = new Schema({
   password: { type: String, required: true, trim: true },
   birthDate: { type: Date },
   phoneNumber: { type: String },
+  status: { type: Number, default: 0 },
+  token: { type: String },
   createdAt: { type: Date, default: Date.now() },
 });
 

@@ -98,6 +98,11 @@ exports.updatePassword = async (req, res) => {
 
   Object.assign(currentPassword, updatedPasswordValues);
 
+  if (category === "None") {
+    currentPassword.category = undefined;
+    currentPassword.categoryName = undefined;
+  }
+
   currentPassword.save();
 
   res.json({ success: "Password updated successfully" });

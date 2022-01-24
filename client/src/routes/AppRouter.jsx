@@ -5,13 +5,14 @@ import { PrivateRoute } from "./PrivateRoute";
 import { Login } from "../pages/auth/Login/Login";
 import { Website } from "../pages/Website/Website";
 import { NotFound } from "../pages/NotFound/NotFound";
-import { Home } from "../pages/PasswordManager/Home/Home";
 import { Register } from "../pages/auth/Register/Register";
 import { Account } from "../pages/PasswordManager/Account/Account";
 import { Category } from "../pages/PasswordManager/Category/Category";
 import { Passwords } from "../pages/PasswordManager/Passwords/Passwords";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { ResetPassword } from "../pages/auth/ForgotPassword/ResetPassword";
 import { Categories } from "../pages/PasswordManager/Categories/Categories";
+import { ForgotPassword } from "../pages/auth/ForgotPassword/ForgotPassword";
 import { GeneratePassword } from "../pages/PasswordManager/GeneratePassword/GeneratePassword";
 
 const AppRouter = () => {
@@ -24,17 +25,13 @@ const AppRouter = () => {
           <Route exact path="/" element={<Website />} />
           <Route exact path="/login" element={<Login />} />
           <Route exact path="/register" element={<Register />} />
-          {/* PRIVATE ROUTES */}
+          <Route exact path="/forgotPassword" element={<ForgotPassword />} />
           <Route
-            path="/home"
-            element={
-              !isLoading && (
-                <PrivateRoute>
-                  <Home />
-                </PrivateRoute>
-              )
-            }
+            exact
+            path="/resetPassword/:userId/:token"
+            element={<ResetPassword />}
           />
+          {/* PRIVATE ROUTES */}
           <Route
             path="/generatePassword"
             element={

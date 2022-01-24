@@ -1,13 +1,13 @@
 import React, { useEffect } from "react";
-import * as Yup from "yup";
 import { Formik } from "formik";
 import { url } from "../../../api/api";
 import { useAuth } from "../../../hooks/useAuth";
 import { useAlert } from "../../../hooks/useAlert";
 import { Link, useNavigate } from "react-router-dom";
 import { CustomAlert } from "../../../components/Alert";
-import { Container, Form, Button, Row } from "react-bootstrap";
+import { loginSchema } from "../../../helpers/validations";
 import { CustomInput } from "../../../components/CustomInput";
+import { Container, Form, Button, Row } from "react-bootstrap";
 
 import "./Login.scss";
 
@@ -15,20 +15,16 @@ const Login = () => {
   const navigate = useNavigate();
   const { isAuth, loginUser } = useAuth();
   const [showAlert, displayAlert] = useAlert();
-  const validationSchema = Yup.object().shape({
-    email: Yup.string().email().min(8).required().default(""),
-    password: Yup.string().min(1).max(15).required().default(""),
-  });
 
   useEffect(() => {
-    if (isAuth) navigate("/home");
+    if (isAuth) navigate("/generatePassword");
   });
 
   const handleSubmit = async (data) => {
     const { res, json } = await loginUser(data);
 
     if (res.status === 200) {
-      navigate("/home");
+      navigate("/generatePassword");
     } else {
       displayAlert(`${json.error}`, "danger");
     }
@@ -40,8 +36,8 @@ const Login = () => {
         <div className="login__info">
           <h1>Sign In</h1>
           <Formik
-            initialValues={validationSchema.default()}
-            validationSchema={validationSchema}
+            initialValues={loginSchema.default()}
+            validationSchema={loginSchema}
             onSubmit={handleSubmit}
             validateOnChange={false}
             validateOnBlur={false}
@@ -59,7 +55,7 @@ const Login = () => {
                 </Row>
                 <Button type="submit">Login</Button>
                 <Container className="form__forgot">
-                  <Link to="/register">Forgot Password?</Link>
+                  <Link to="/forgotPassword">Forgot Password?</Link>
                 </Container>
                 <Container className="form__register">
                   Don't have an account? <Link to="/register">Register</Link>

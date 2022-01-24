@@ -7,6 +7,8 @@ const RESOURCE_URLS = {
   LOGOUT_USER: "/api/auth/logout",
   USER_ACCOUNT: "/api/users/account",
   UPDATE_USER: "/api/users/updateUser",
+  RESET_PASSWORD: "/api/auth/resetPassword",
+  FORGOT_PASSWORD: "/api/auth/forgotPassword",
   CREATE_PASSWORD: "/api/password/createPassword",
   FETCH_PASSWORD: "/api/password/getPasswords",
   UPDATE_PASSWORD: "/api/password/updatePassword",
@@ -76,6 +78,32 @@ class APIUsers {
   static async updateUser(data) {
     const res = await fetch(`${url}${RESOURCE_URLS.UPDATE_USER}`, {
       method: "PUT",
+      credentials: "include",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(data),
+    });
+
+    return res;
+  }
+
+  static async forgotPassword(data) {
+    const res = await fetch(`${url}${RESOURCE_URLS.FORGOT_PASSWORD}`, {
+      method: "POST",
+      credentials: "include",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(data),
+    });
+
+    return res;
+  }
+
+  static async resetPassword(data) {
+    const res = await fetch(`${url}${RESOURCE_URLS.RESET_PASSWORD}`, {
+      method: "POST",
       credentials: "include",
       headers: {
         "Content-Type": "application/json",

@@ -10,4 +10,12 @@ const createToken = (user) => {
   return accessToken;
 };
 
-module.exports = { createToken };
+const createTemporalToken = (email) => {
+  const accessToken = sign({ email }, process.env.SECRET_ACCESS_TOKEN, {
+    expiresIn: "24h",
+  });
+
+  return accessToken;
+};
+
+module.exports = { createToken, createTemporalToken };

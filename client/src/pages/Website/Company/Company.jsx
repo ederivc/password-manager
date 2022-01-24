@@ -1,10 +1,6 @@
 import React from "react";
-import nvidia from "../../../assets/nvidia.png";
-import google from "../../../assets/google.png";
-import nintendo from "../../../assets/nintendo.png";
-import samsung from "../../../assets/samsung.png";
-import signal from "../../../assets/signal.png";
-import spotify from "../../../assets/spotify.png";
+import { Button } from "../../../components/Button/Button";
+import { IMAGES } from "../../../helpers/images";
 
 import "./Company.scss";
 
@@ -18,26 +14,26 @@ const Company = () => {
           their accounts. We provide the tools they need to easily create and
           manage their passwords.
         </p>
-        <button>About us</button>
+        <Button text="About Us" />
       </div>
       <div className="company__grid">
         <div className="company__grid__item">
-          <img src={nvidia} alt="" />
+          <img src={IMAGES.NVIDIA} alt="nvidia" />
         </div>
         <div className="company__grid__item">
-          <img src={google} alt="" />
+          <img src={IMAGES.GOOGLE} alt="google" />
         </div>
         <div className="company__grid__item">
-          <img src={nintendo} alt="" />
+          <img src={IMAGES.NINTENDO} alt="nintendo" />
         </div>
         <div className="company__grid__item">
-          <img src={samsung} alt="" />
+          <img src={IMAGES.SAMSUNG} alt="samsung" />
         </div>
         <div className="company__grid__item">
-          <img src={signal} alt="" />
+          <img src={IMAGES.SIGNAL} alt="signal" />
         </div>
         <div className="company__grid__item">
-          <img src={spotify} alt="" />
+          <img src={IMAGES.SPOTIFY} alt="spotify" />
         </div>
       </div>
     </div>

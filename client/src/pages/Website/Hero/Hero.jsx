@@ -1,12 +1,10 @@
 import React from "react";
-import video1 from "../../../assets/video1.mp4";
 
 import "./Hero.scss";
 
 const Hero = () => {
   return (
     <div className="hero">
-      <video src={video1} loop autoPlay className="hero__video"></video>
       <div className="hero__content">
         <h1>
           Password <strong>Manager</strong>
