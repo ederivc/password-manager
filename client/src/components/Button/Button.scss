@@ -1,0 +1,29 @@
+@use "../../common/common.scss";
+
+.custom__button {
+  display: block;
+  cursor: pointer;
+  outline: none;
+  padding: 0.7rem 1.2rem;
+  border-radius: 10px;
+  font-size: 1rem;
+  background: common.$medium-blue;
+  color: #000;
+  border: 1px solid transparent;
+  transition: 0.3s ease all;
+
+  &:hover {
+    border-color: common.$medium-blue;
+    background: rgba(common.$medium-blue, 0.1);
+    color: common.$medium-blue;
+  }
+
+  &:active {
+    border-color: common.$medium-blue;
+    background: linear-gradient(
+      rgba(common.$medium-blue, 0.2),
+      rgba(common.$medium-blue, 0.3)
+    );
+    color: common.$medium-blue;
+  }
+}

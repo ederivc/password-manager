@@ -4,9 +4,9 @@ import { useAuth } from "../../../hooks/useAuth";
 import { APIUsers, url } from "../../../api/api";
 import { useAlert } from "../../../hooks/useAlert";
 import { CustomAlert } from "../../../components/Alert";
+import { accountSchema } from "../../../helpers/validations";
 import { CustomInput } from "../../../components/CustomInput";
 import { CustomAccountCol } from "../../../components/Utilities";
-import { accountValidations } from "../../../common/Validations";
 import { Container, Row, Col, Button, Form } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 
@@ -21,7 +21,7 @@ const Account = () => {
   const [changeData, setChangeData] = useState(false);
   const [dataHasLoaded, setDataHasLoaded] = useState(false);
   const [changePassword, setChangePassword] = useState(false);
-  const validationSchema = accountValidations(user, changePassword);
+  const validationSchema = accountSchema(user, changePassword);
 
   const fetchUserData = async () => {
     const res = await APIUsers.fetchUserInfo();

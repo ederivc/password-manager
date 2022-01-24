@@ -1,4 +1,5 @@
 import React from "react";
+import { Button } from "../Button/Button";
 
 import "./PricingCard.scss";
 
@@ -19,7 +20,7 @@ const PricingCard = ({
       </div>
       <div className="pricing__card__body">{children}</div>
       <div className="pricing__card__footer">
-        <button>{buttonText}</button>
+        <Button text={buttonText} />
       </div>
     </div>
   );

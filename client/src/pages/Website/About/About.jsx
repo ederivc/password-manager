@@ -1,9 +1,5 @@
 import React from "react";
-import clients from "../../../assets/clients.png";
-import friendship from "../../../assets/friendship.png";
-import research from "../../../assets/research.png";
-import teamwork from "../../../assets/teamwork.png";
-import trophy from "../../../assets/trophy.png";
+import { IMAGES } from "../../../helpers/images";
 
 import "./About.scss";
 
@@ -40,7 +36,7 @@ const About = () => {
             <strong>Clients</strong>
           </div>
           <div className="about__item__body">
-            <img src={clients} alt="our-clients" />
+            <img src={IMAGES.CLIENTS} alt="our-clients" />
           </div>
         </div>
         <div className="about__item about__values about__medium">
@@ -48,10 +44,10 @@ const About = () => {
             <strong>Core values</strong>
           </div>
           <div className="about__item__body">
-            <img src={friendship} alt="" />
-            <img src={research} alt="" />
-            <img src={teamwork} alt="" />
-            <img src={trophy} alt="" />
+            <img src={IMAGES.FRIENDSHIP} alt="friendship" />
+            <img src={IMAGES.RESEARCH} alt="research" />
+            <img src={IMAGES.TEAMWORK} alt="teamwork" />
+            <img src={IMAGES.TROPHY} alt="trophy" />
           </div>
         </div>
         <div className="about__item about__history about__transparent">

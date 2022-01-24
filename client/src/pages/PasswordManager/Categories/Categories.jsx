@@ -63,7 +63,7 @@ const Categories = () => {
           </Form>
         )}
       </Formik>
-      <Row className="mt-4">
+      <Row className="mt-4 px-sm-3 px-0">
         <Table responsive striped className="categories__table mt-4">
           <thead>
             <tr>

@@ -2,16 +2,22 @@ import React from "react";
 import { Button, Modal } from "react-bootstrap";
 import { CustomFormModal } from "../Utilities";
 
-function ModalDelete({ showModalDelete, setShowModalDelete, handleDelete }) {
+function ModalDelete({
+  showModalDelete,
+  setShowModalDelete,
+  handleDelete,
+  title,
+  text,
+}) {
   return (
     <CustomFormModal
       showProps={showModalDelete}
       setShowProps={setShowModalDelete}
-      title="Delete Password"
+      title={title}
       confirmBtn="Delete"
       handleSubmit={handleDelete}
     >
-      <p>Are you sure you want to delete this password?</p>
+      <p>{text}</p>
       <Modal.Footer>
         <Button variant="secondary" onClick={() => setShowModalDelete(false)}>
           No

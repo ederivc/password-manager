@@ -1,13 +1,13 @@
 import React, { useEffect } from "react";
-import * as Yup from "yup";
 import { Formik } from "formik";
 import { url } from "../../../api/api";
+import { useNavigate } from "react-router-dom";
 import { useAuth } from "../../../hooks/useAuth";
 import { useAlert } from "../../../hooks/useAlert";
-import { Form, Row, Button, Container, Col } from "react-bootstrap";
-import { useNavigate } from "react-router-dom";
 import { CustomAlert } from "../../../components/Alert";
 import { CustomInput } from "../../../components/CustomInput";
+import { registerSchema } from "../../../helpers/validations";
+import { Form, Row, Button, Container, Col } from "react-bootstrap";
 
 import "./Register.scss";
 
@@ -15,12 +15,6 @@ const Register = () => {
   const navigate = useNavigate();
   const { isAuth, registerUser } = useAuth();
   const [showAlert, displayAlert] = useAlert();
-  const validationSchema = Yup.object().shape({
-    name: Yup.string().min(5).max(10).required().default(""),
-    email: Yup.string().email().min(8).required().default(""),
-    password: Yup.string().min(1).max(15).required().default(""),
-    confirmPassword: Yup.string().min(1).max(15).required().default(""),
-  });
 
   useEffect(() => {
     if (isAuth) navigate("/home");
@@ -54,8 +48,8 @@ const Register = () => {
         <Col md={6} className="register__form">
           <h2 className="form-title">Sign Up</h2>
           <Formik
-            initialValues={validationSchema.default()}
-            validationSchema={validationSchema}
+            initialValues={registerSchema.default()}
+            validationSchema={registerSchema}
             onSubmit={handleSubmit}
             validateOnChange={false}
             validateOnBlur={false}
