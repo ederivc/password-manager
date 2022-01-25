@@ -2,7 +2,12 @@ const nodemailer = require("nodemailer");
 require("dotenv").config({ path: ".env" });
 
 const transporter = nodemailer.createTransport({
-  service: "gmail",
+  host: "smtp-mail.outlook.com",
+  secureConnection: false, // TLS requires secureConnection to be false
+  port: 587, // port for secure SMTP
+  tls: {
+    ciphers: "SSLv3",
+  },
   auth: {
     user: process.env.EMAIL,
     pass: process.env.EMAIL_PASSWORD,
@@ -11,7 +16,7 @@ const transporter = nodemailer.createTransport({
 
 const mailRegister = (email, token) => {
   return {
-    from: "vallaveterinaria569@gmail.com",
+    from: process.env.EMAIL,
     to: email,
     subject: "Password Manager | Activate your Account",
     text: `

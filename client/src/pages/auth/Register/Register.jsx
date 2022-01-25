@@ -30,7 +30,7 @@ const Register = () => {
 
     if (res.status === 200) {
       displayAlert(
-        "Registration successfully completed, please check your email to activate your account",
+        "Registration successfully completed, please check your email or verify your SPAM to activate your account",
         "success"
       );
       props.resetForm();
