@@ -59,7 +59,7 @@ const AuthProvider = ({ children }) => {
     });
 
     removeCookie("access-token");
-    return { status: 200 };
+    return res;
   };
 
   useEffect(() => {

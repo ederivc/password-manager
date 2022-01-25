@@ -19,8 +19,17 @@
       letter-spacing: 2px;
     }
 
+    a {
+      margin-top: 0.5rem;
+    }
+
     i {
+      color: #fff;
       font-size: 1.5rem;
+
+      &:hover {
+        color: common.$medium-blue;
+      }
     }
 
     &__down {

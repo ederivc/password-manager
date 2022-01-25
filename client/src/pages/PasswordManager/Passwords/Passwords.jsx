@@ -3,6 +3,7 @@ import { useAlert } from "../../../hooks/useAlert";
 import { CustomAlert } from "../../../components/Alert";
 import { APICategory, APIPasswords } from "../../../api/api";
 import { CustomCardText } from "../../../components/Utilities";
+import { useDocumentTitle } from "../../../hooks/useDocumentTitle";
 import { Container, Card, Row, Col, Button } from "react-bootstrap";
 import { updatePasswordSchema } from "../../../helpers/validations";
 import { ModalDelete } from "../../../components/Modals/ModalDelete";
@@ -11,6 +12,7 @@ import { ModalUpdate } from "../../../components/Modals/ModalUpdate";
 import "./Passwords.scss";
 
 const Passwords = () => {
+  useDocumentTitle("Passwords · Password Manager");
   const [showAlert, displayAlert] = useAlert();
   const [reload, setReload] = useAlert(false);
   const [passwords, setPasswords] = useState([]);

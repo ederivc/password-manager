@@ -1,12 +1,12 @@
 const bcrypt = require("bcrypt");
 const User = require("../models/User");
 require("dotenv").config({ path: ".env" });
-const { createToken, createTemporalToken } = require("../helpers/JWT");
 const {
   sendEmail,
   mailRegister,
   mailResetPassword,
 } = require("../helpers/Email");
+const { createToken, createTemporalToken } = require("../helpers/JWT");
 const { validateTemporalToken } = require("../middlewares/AuthMiddleware");
 
 exports.login = async (req, res) => {
@@ -74,7 +74,7 @@ exports.logout = async (req, res) => {
 
 exports.activateAccount = async (req, res) => {
   const token = req.params.token;
-  const isValid = validateTemporalToken(req.params.token);
+  const isValid = validateTemporalToken(token);
 
   if (isValid) {
     const user = await User.find({ email: isValid });

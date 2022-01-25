@@ -19,9 +19,10 @@ const mailRegister = (email, token) => {
     from: process.env.EMAIL,
     to: email,
     subject: "Password Manager | Activate your Account",
-    text: `
-    Hi! Thanks for registering. To activate your account, please clcik on the following link
-    ${process.env.SERVER}/api/auth/activateAccount/${token}
+    html: `
+    <p>Hi! Thanks for registering. To activate your account, please clcik on the following link:</p>
+
+    <p>${process.env.SERVER}/api/auth/activateAccount/${token}</p>
     `,
   };
 };
@@ -31,11 +32,14 @@ const mailResetPassword = (email, token) => {
     from: process.env.EMAIL,
     to: email,
     subject: "Password Manager | Reset Password",
-    text: `
-    Hi, We received a request to reset the password of your account.
-    To reset your password, click on the link below:
-    ${process.env.SERVER}/api/auth/resetPassword/${token}
-    If this was a mistake, just ignore this email and nothing will happen.
+    html: `
+    <p>Hi, We received a request to reset the password of your account.</p>
+
+    <p>To reset your password, click on the link below:</p>
+
+    <p>${process.env.SERVER}/api/auth/resetPassword/${token}</p>
+
+    <p>If this was a mistake, just ignore this email and nothing will happen.</p>
     `,
   };
 };

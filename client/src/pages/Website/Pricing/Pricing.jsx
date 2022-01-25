@@ -5,7 +5,7 @@ import "./Pricing.scss";
 
 const Pricing = () => {
   return (
-    <>
+    <div id="pricing">
       <h2 className="pricing-title">
         Choose a plan that <span>works for you</span>
       </h2>
@@ -51,7 +51,7 @@ const Pricing = () => {
           </ul>
         </PricingCard>
       </div>
-    </>
+    </div>
   );
 };
 

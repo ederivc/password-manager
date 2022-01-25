@@ -1,10 +1,13 @@
 import React from "react";
-import { Button } from "../../../components/Button/Button";
+import { useNavigate } from "react-router-dom";
 import { IMAGES } from "../../../helpers/images";
+import { Button } from "../../../components/Button/Button";
 
 import "./Company.scss";
 
 const Company = () => {
+  const navigate = useNavigate();
+
   return (
     <div className="company">
       <div className="company__info">
@@ -14,7 +17,7 @@ const Company = () => {
           their accounts. We provide the tools they need to easily create and
           manage their passwords.
         </p>
-        <Button text="About Us" />
+        <Button text="Sign Up" onClick={() => navigate("/register")} />
       </div>
       <div className="company__grid">
         <div className="company__grid__item">

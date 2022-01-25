@@ -7,11 +7,13 @@ import { useParams, useNavigate } from "react-router-dom";
 import { CustomInput } from "../../../components/CustomInput";
 import { passwordSchema } from "../../../helpers/validations";
 import { Container, Row, Button, Form } from "react-bootstrap";
+import { useDocumentTitle } from "../../../hooks/useDocumentTitle";
 
 const ResetPassword = () => {
   const navigate = useNavigate();
   const { userId, token } = useParams();
   const [showAlert, displayAlert] = useAlert();
+  useDocumentTitle("Reset password · Password Manager");
 
   const handleSubmit = async (data) => {
     if (data.password !== data.confirmPassword) {

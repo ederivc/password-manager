@@ -19,6 +19,7 @@ const RESOURCE_URLS = {
   FETCH_CATEGORY: "/api/categories/getCategories",
   FETCH_CATEGORY_PASSWORDS: "/api/password/getCategoryPasswords",
 };
+
 class APIUsers {
   static async fetchAuthUser() {
     const token = getCookie("access-token");

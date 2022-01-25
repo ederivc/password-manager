@@ -5,6 +5,7 @@ import { useAlert } from "../../../hooks/useAlert";
 import { CustomAlert } from "../../../components/Alert";
 import { Container, Row, Col } from "react-bootstrap";
 import { CustomBtnRow } from "../../../components/Utilities";
+import { useDocumentTitle } from "../../../hooks/useDocumentTitle";
 
 import "./GeneratePassword.scss";
 
@@ -17,6 +18,7 @@ const GeneratePassword = () => {
     numbers: true,
     capitals: true,
   });
+  useDocumentTitle("Generate password · Password Manager");
 
   function shuffleRegex(text) {
     let a = text.split("");

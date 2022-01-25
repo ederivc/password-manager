@@ -7,6 +7,7 @@ import { useAlert } from "../../../hooks/useAlert";
 import { CustomAlert } from "../../../components/Alert";
 import { CustomInput } from "../../../components/CustomInput";
 import { registerSchema } from "../../../helpers/validations";
+import { useDocumentTitle } from "../../../hooks/useDocumentTitle";
 import { Form, Row, Button, Container, Col } from "react-bootstrap";
 
 import "./Register.scss";
@@ -15,6 +16,7 @@ const Register = () => {
   const navigate = useNavigate();
   const { isAuth, registerUser } = useAuth();
   const [showAlert, displayAlert] = useAlert();
+  useDocumentTitle("Join Password Manager · Password Manager");
 
   useEffect(() => {
     if (isAuth) navigate("/home");
@@ -40,13 +42,13 @@ const Register = () => {
   };
 
   return (
-    <Container className="wrapper">
-      <div className="register">
-        <Col md={6} className="register__img">
-          <img src={`${url}/img/register.jpg`} alt="" />
-        </Col>
-        <Col md={6} className="register__form">
-          <h2 className="form-title">Sign Up</h2>
+    <Container fluid className="register">
+      <div className="register__content">
+        <div className="register__image">
+          <img src={`${url}/img/register.jpg`} alt="passwordmanager" />
+        </div>
+        <div className="register__info">
+          <h2>Sign Up</h2>
           <Formik
             initialValues={registerSchema.default()}
             validationSchema={registerSchema}
@@ -77,7 +79,7 @@ const Register = () => {
               </Form>
             )}
           </Formik>
-        </Col>
+        </div>
       </div>
     </Container>
   );

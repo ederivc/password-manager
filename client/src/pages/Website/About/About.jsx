@@ -5,8 +5,8 @@ import "./About.scss";
 
 const About = () => {
   return (
-    <>
-      <h2 className="about-title">
+    <div id="about">
+      <h2 className="about-title text-center">
         About <span>Us</span>
       </h2>
       <div className="about">
@@ -62,7 +62,7 @@ const About = () => {
           </div>
         </div>
       </div>
-    </>
+    </div>
   );
 };
 

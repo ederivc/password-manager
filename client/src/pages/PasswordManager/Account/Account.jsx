@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import { Formik } from "formik";
+import { useNavigate } from "react-router-dom";
 import { useAuth } from "../../../hooks/useAuth";
 import { APIUsers, url } from "../../../api/api";
 import { useAlert } from "../../../hooks/useAlert";
@@ -7,8 +8,8 @@ import { CustomAlert } from "../../../components/Alert";
 import { accountSchema } from "../../../helpers/validations";
 import { CustomInput } from "../../../components/CustomInput";
 import { CustomAccountCol } from "../../../components/Utilities";
+import { useDocumentTitle } from "../../../hooks/useDocumentTitle";
 import { Container, Row, Col, Button, Form } from "react-bootstrap";
-import { useNavigate } from "react-router-dom";
 
 import "./Account.scss";
 
@@ -22,6 +23,7 @@ const Account = () => {
   const [dataHasLoaded, setDataHasLoaded] = useState(false);
   const [changePassword, setChangePassword] = useState(false);
   const validationSchema = accountSchema(user, changePassword);
+  useDocumentTitle("Account · Password Manager");
 
   const fetchUserData = async () => {
     const res = await APIUsers.fetchUserInfo();

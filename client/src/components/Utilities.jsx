@@ -1,5 +1,5 @@
-import { Row, Col, Card, Modal } from "react-bootstrap";
 import { Link } from "react-router-dom";
+import { Row, Col, Card, Modal } from "react-bootstrap";
 
 const CustomBtnRow = ({
   label,
@@ -52,6 +52,14 @@ const CustomLink = ({ to, text, onClick }) => {
   );
 };
 
+const CustomSpanLi = ({ text, onClick }) => {
+  return (
+    <li>
+      <span onClick={onClick}>{text}</span>
+    </li>
+  );
+};
+
 const CustomAccountCol = ({ strong, text }) => {
   return (
     <Col md={4} className="my-2 my-md-0">
@@ -74,10 +82,23 @@ const CustomFormModal = ({ showProps, setShowProps, title, children }) => {
   );
 };
 
+const IconLink = ({ icon }) => {
+  return (
+    <a
+      href="https://www.linkedin.com/in/eder-rivera-cisneros-b35a7521a"
+      target="_blank"
+    >
+      <i className={icon}></i>
+    </a>
+  );
+};
+
 export {
+  IconLink,
+  CustomLink,
+  CustomSpanLi,
   CustomBtnRow,
   CustomCardText,
-  CustomLink,
-  CustomAccountCol,
   CustomFormModal,
+  CustomAccountCol,
 };

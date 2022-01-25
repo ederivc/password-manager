@@ -4,7 +4,7 @@ import "./Services.scss";
 
 const Services = () => {
   return (
-    <div className="services">
+    <div className="services" id="services">
       <div className="services__flex">
         <div className="services__flex__item">
           <div className="item__header">

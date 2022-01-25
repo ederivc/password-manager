@@ -1,4 +1,5 @@
 import React from "react";
+import { IconLink } from "../Utilities";
 
 import "./Footer.scss";
 
@@ -15,10 +16,10 @@ const Footer = () => {
             </p>
           </div>
           <div className="footer__info__down">
-            <i className="fab fa-facebook-f"></i>
-            <i className="fab fa-twitter"></i>
-            <i className="fab fa-instagram"></i>
-            <i className="fab fa-linkedin-in"></i>
+            <IconLink icon="fab fa-facebook-f" />
+            <IconLink icon="fab fa-twitter" />
+            <IconLink icon="fab fa-instagram" />
+            <IconLink icon="fab fa-linkedin-in" />
           </div>
         </div>
       </div>

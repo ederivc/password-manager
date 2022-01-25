@@ -8,6 +8,7 @@ import { CustomAlert } from "../../../components/Alert";
 import { loginSchema } from "../../../helpers/validations";
 import { CustomInput } from "../../../components/CustomInput";
 import { Container, Form, Button, Row } from "react-bootstrap";
+import { useDocumentTitle } from "../../../hooks/useDocumentTitle";
 
 import "./Login.scss";
 
@@ -15,6 +16,7 @@ const Login = () => {
   const navigate = useNavigate();
   const { isAuth, loginUser } = useAuth();
   const [showAlert, displayAlert] = useAlert();
+  useDocumentTitle("Sign in · Password Manager");
 
   useEffect(() => {
     if (isAuth) navigate("/generatePassword");

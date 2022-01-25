@@ -1,8 +1,12 @@
 import React from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { Button } from "../../../components/Button/Button";
 
 import "./Hero.scss";
 
 const Hero = () => {
+  const navigate = useNavigate();
+
   return (
     <div className="hero">
       <div className="hero__content">
@@ -11,7 +15,7 @@ const Hero = () => {
         </h1>
         <h2>World leaders in cybersecurity</h2>
         <span>Create and Store your passwords</span>
-        <button>Explore now</button>
+        <Button text="Explore now" onClick={() => navigate("/login")} />
       </div>
     </div>
   );

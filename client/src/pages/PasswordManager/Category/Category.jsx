@@ -4,12 +4,14 @@ import { useAlert } from "../../../hooks/useAlert";
 import { CustomAlert } from "../../../components/Alert";
 import { APICategory, APIPasswords } from "../../../api/api";
 import { CustomCardText } from "../../../components/Utilities";
+import { useDocumentTitle } from "../../../hooks/useDocumentTitle";
 import { updatePasswordSchema } from "../../../helpers/validations";
 import { Button, Card, Col, Container, Row } from "react-bootstrap";
 import { ModalDelete } from "../../../components/Modals/ModalDelete";
 import { ModalUpdate } from "../../../components/Modals/ModalUpdate";
 
 const Category = () => {
+  useDocumentTitle("Categories · Password Manager");
   const [showAlert, displayAlert] = useAlert();
   const { categoryName, categoryId } = useParams();
   const [reload, setReload] = useState(false);

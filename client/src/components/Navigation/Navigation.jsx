@@ -1,13 +1,15 @@
 import React, { useState, useEffect } from "react";
 import { url } from "../../api/api";
-import { CustomLink } from "../Utilities";
+import { scroller } from "react-scroll";
 import { useAuth } from "../../hooks/useAuth";
-import { Link, useNavigate } from "react-router-dom";
+import { CustomLink, CustomSpanLi } from "../Utilities";
+import { Link, useNavigate, useLocation } from "react-router-dom";
 
 import "./Navigation.scss";
 
 const Navigation = () => {
   const navigate = useNavigate();
+  const location = useLocation();
   const [menuOpen, setMenuOpen] = useState(false);
   const [size, setSize] = useState({
     width: window.innerWidth,
@@ -32,6 +34,24 @@ const Navigation = () => {
 
   const menuToggleHandler = () => {
     setMenuOpen((p) => !p);
+  };
+
+  const scrollToPage = async (target) => {
+    if (location.pathname !== "/") {
+      await navigate("/");
+    }
+
+    return scroller.scrollTo(target, {
+      smooth: true,
+      spy: true,
+      offset: -70,
+      duration: 500,
+    });
+  };
+
+  const customMenuToggleHandler = (target) => {
+    setMenuOpen((p) => !p);
+    scrollToPage(target);
   };
 
   const handleLogout = async () => {
@@ -79,12 +99,17 @@ const Navigation = () => {
               </>
             ) : (
               <>
-                <CustomLink to="/" text="About" onClick={menuToggleHandler} />
-                <CustomLink to="/" text="Pricing" onClick={menuToggleHandler} />
-                <CustomLink
-                  to="/"
+                <CustomSpanLi
+                  text="About"
+                  onClick={() => customMenuToggleHandler("about")}
+                />
+                <CustomSpanLi
+                  text="Pricing"
+                  onClick={() => customMenuToggleHandler("pricing")}
+                />
+                <CustomSpanLi
                   text="Services"
-                  onClick={menuToggleHandler}
+                  onClick={() => customMenuToggleHandler("services")}
                 />
               </>
             )}

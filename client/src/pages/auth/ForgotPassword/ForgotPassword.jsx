@@ -6,9 +6,11 @@ import { CustomAlert } from "../../../components/Alert";
 import { emailSchema } from "../../../helpers/validations";
 import { CustomInput } from "../../../components/CustomInput";
 import { Container, Row, Button, Form } from "react-bootstrap";
+import { useDocumentTitle } from "../../../hooks/useDocumentTitle";
 
 const ForgotPassword = () => {
   const [showAlert, displayAlert] = useAlert();
+  useDocumentTitle("Forgot your password? · Password Manager");
 
   const handleSubmit = async (data, props) => {
     const res = await APIUsers.forgotPassword(data);

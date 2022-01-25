@@ -6,6 +6,7 @@ import { APICategory } from "../../../api/api";
 import { useAlert } from "../../../hooks/useAlert";
 import { CustomAlert } from "../../../components/Alert";
 import { CustomInput } from "../../../components/CustomInput";
+import { useDocumentTitle } from "../../../hooks/useDocumentTitle";
 import { Container, Form, Row, Button, Table } from "react-bootstrap";
 
 import "./Categories.scss";
@@ -17,6 +18,7 @@ const Categories = () => {
   const validationSchema = Yup.object().shape({
     category: Yup.string().min(5).max(15).required().default(""),
   });
+  useDocumentTitle("Categories · Password Manager");
 
   const handleSubmit = async (data, e) => {
     const res = await APICategory.createCategory(data);
@@ -59,11 +61,13 @@ const Categories = () => {
             <Row>
               <CustomInput label="Category Name" name="category" />
             </Row>
-            <Button type="submit">Create</Button>
+            <Button type="submit" className="mt-2 mt-md-0">
+              Create
+            </Button>
           </Form>
         )}
       </Formik>
-      <Row className="mt-4 px-sm-3 px-0">
+      <Row className="mt-4 px-sm-3 px-0 mx-0">
         <Table responsive striped className="categories__table mt-4">
           <thead>
             <tr>
