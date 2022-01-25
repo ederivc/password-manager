@@ -2,6 +2,7 @@ import React, { useEffect, useReducer, createContext } from "react";
 import { APIUsers } from "../api/api";
 import { TYPES } from "../actions/authActions";
 import { AuthReducer } from "../reducers/AuthReducer";
+import { removeCookie, setCookie } from "../helpers/helpers";
 
 const AuthContext = createContext();
 
@@ -31,9 +32,13 @@ const AuthProvider = ({ children }) => {
     const json = await res.json();
 
     if (res.status === 200) {
+      setCookie("access-token", json.accessToken, 30);
       dispatch({
         type: TYPES.USER_IS_AUTH,
-        payload: { name: json.name, email: data.email },
+        payload: {
+          name: json.name,
+          email: data.email,
+        },
       });
     }
 
@@ -52,7 +57,9 @@ const AuthProvider = ({ children }) => {
     dispatch({
       type: TYPES.LOGOUT_USER,
     });
-    return res;
+
+    removeCookie("access-token");
+    return { status: 200 };
   };
 
   useEffect(() => {

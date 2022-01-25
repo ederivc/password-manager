@@ -1,5 +1,6 @@
+import { getCookie } from "../helpers/helpers";
+
 const url = process.env.REACT_APP_SERVER_URL;
-// const url = "http://127.0.0.1:5000";
 
 const RESOURCE_URLS = {
   FETCH_AUTH_USER: "/api/auth/fetchAuthUser",
@@ -20,8 +21,12 @@ const RESOURCE_URLS = {
 };
 class APIUsers {
   static async fetchAuthUser() {
+    const token = getCookie("access-token");
     const res = await fetch(`${url}${RESOURCE_URLS.FETCH_AUTH_USER}`, {
       credentials: "include",
+      headers: {
+        accessToken: token,
+      },
     });
 
     return res;
@@ -65,10 +70,12 @@ class APIUsers {
   }
 
   static async fetchUserInfo() {
+    const token = getCookie("access-token");
     const res = await fetch(`${url}${RESOURCE_URLS.USER_ACCOUNT}`, {
       credentials: "include",
       headers: {
         "Content-Type": "application/json",
+        accessToken: token,
       },
     });
 
@@ -76,11 +83,13 @@ class APIUsers {
   }
 
   static async updateUser(data) {
+    const token = getCookie("access-token");
     const res = await fetch(`${url}${RESOURCE_URLS.UPDATE_USER}`, {
       method: "PUT",
       credentials: "include",
       headers: {
         "Content-Type": "application/json",
+        accessToken: token,
       },
       body: JSON.stringify(data),
     });
@@ -117,11 +126,13 @@ class APIUsers {
 
 class APIPasswords {
   static async createPassword(data) {
+    const token = getCookie("access-token");
     const res = await fetch(`${url}${RESOURCE_URLS.CREATE_PASSWORD}`, {
       method: "POST",
       credentials: "include",
       headers: {
         "Content-Type": "application/json",
+        accessToken: token,
       },
       body: JSON.stringify({ password: data }),
     });
@@ -130,19 +141,25 @@ class APIPasswords {
   }
 
   static async fetchPasswords() {
+    const token = getCookie("access-token");
     const res = await fetch(`${url}${RESOURCE_URLS.FETCH_PASSWORD}`, {
       credentials: "include",
+      headers: {
+        accessToken: token,
+      },
     });
 
     return res;
   }
 
   static async fetchCategoryPasswords(data) {
+    const token = getCookie("access-token");
     const res = await fetch(`${url}${RESOURCE_URLS.FETCH_CATEGORY_PASSWORDS}`, {
       method: "POST",
       credentials: "include",
       headers: {
         "Content-Type": "application/json",
+        accessToken: token,
       },
       body: JSON.stringify({ categoryId: data }),
     });
@@ -151,11 +168,13 @@ class APIPasswords {
   }
 
   static async updatePasswords(data) {
+    const token = getCookie("access-token");
     const res = await fetch(`${url}${RESOURCE_URLS.UPDATE_PASSWORD}`, {
       method: "PUT",
       credentials: "include",
       headers: {
         "Content-Type": "application/json",
+        accessToken: token,
       },
       body: JSON.stringify(data),
     });
@@ -164,11 +183,13 @@ class APIPasswords {
   }
 
   static async deletePassword(data) {
+    const token = getCookie("access-token");
     const res = await fetch(`${url}${RESOURCE_URLS.DELETE_PASSWORD}`, {
       method: "DELETE",
       credentials: "include",
       headers: {
         "Content-Type": "application/json",
+        accessToken: token,
       },
       body: JSON.stringify({ id: data }),
     });
@@ -179,11 +200,13 @@ class APIPasswords {
 
 class APICategory {
   static async createCategory(data) {
+    const token = getCookie("access-token");
     const res = await fetch(`${url}${RESOURCE_URLS.CREATE_CATEGORY}`, {
       method: "POST",
       credentials: "include",
       headers: {
         "Content-Type": "application/json",
+        accessToken: token,
       },
       body: JSON.stringify(data),
     });
@@ -192,8 +215,12 @@ class APICategory {
   }
 
   static async fetchCategories() {
+    const token = getCookie("access-token");
     const res = await fetch(`${url}${RESOURCE_URLS.FETCH_CATEGORY}`, {
       credentials: "include",
+      headers: {
+        accessToken: token,
+      },
     });
 
     return res;

@@ -2,7 +2,7 @@ const { verify } = require("jsonwebtoken");
 require("dotenv").config({ path: ".env" });
 
 const validateToken = (req, res, next) => {
-  const accessToken = req.cookies["access-token"];
+  const accessToken = req.headers["accesstoken"];
 
   if (!accessToken)
     return res.status(400).json({ error: "User not logged in" });

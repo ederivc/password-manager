@@ -31,14 +31,7 @@ exports.login = async (req, res) => {
 
   const accessToken = createToken(user);
 
-  res.cookie("access-token", accessToken, {
-    maxAge: 2592000000, // 30 days
-    // expiresIn: 3600, // 1 hour
-    httpOnly: true,
-    // secure: true,
-  });
-
-  res.json({ success: "logged in", name: user.name });
+  res.json({ success: "logged in", name: user.name, accessToken });
 };
 
 exports.register = async (req, res) => {

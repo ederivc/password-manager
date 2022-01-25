@@ -16,6 +16,7 @@ const AuthReducer = (state, action) => {
         isAuth: false,
         isLoading: false,
       };
+
     case "LOGOUT_USER":
       return {
         ...state,
