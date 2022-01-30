@@ -1,0 +1,11 @@
+export { Login } from "./auth/Login/Login";
+export { Website } from "./Website/Website";
+export { NotFound } from "./NotFound/NotFound";
+export { Register } from "./auth/Register/Register";
+export { Account } from "./PasswordManager/Account/Account";
+export { Category } from "./PasswordManager/Category/Category";
+export { Passwords } from "./PasswordManager/Passwords/Passwords";
+export { ResetPassword } from "./auth/ForgotPassword/ResetPassword";
+export { Categories } from "./PasswordManager/Categories/Categories";
+export { ForgotPassword } from "./auth/ForgotPassword/ForgotPassword";
+export { GeneratePassword } from "./PasswordManager/GeneratePassword/GeneratePassword";

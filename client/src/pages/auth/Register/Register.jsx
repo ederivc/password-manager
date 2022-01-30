@@ -7,8 +7,8 @@ import { useAlert } from "../../../hooks/useAlert";
 import { CustomAlert } from "../../../components/Alert";
 import { CustomInput } from "../../../components/CustomInput";
 import { registerSchema } from "../../../helpers/validations";
+import { Form, Row, Button, Container } from "react-bootstrap";
 import { useDocumentTitle } from "../../../hooks/useDocumentTitle";
-import { Form, Row, Button, Container, Col } from "react-bootstrap";
 
 import "./Register.scss";
 
